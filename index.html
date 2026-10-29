@@ -7,6 +7,7 @@
 <meta property="og:title" content="Сайты и карты для бизнеса">
 <meta property="og:description" content="Сайты для местного бизнеса и карточки в Яндекс Картах и Google Картах. RU / EN / ՀԱՅ.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://peterdthegreat-alt.github.io/sites-maps/img/cafe_1.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z%22 fill=%22%23e5483b%22/%3E%3Ccircle cx=%2212%22 cy=%229%22 r=%222.6%22 fill=%22white%22/%3E%3C/svg%3E">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Сайты и карты для бизнеса</title>
@@ -106,45 +107,91 @@ nav.links a:hover{color:var(--ink)}
 .svc .ico{width:38px;height:38px;border-radius:10px;background:var(--soft);display:grid;place-items:center;color:var(--brand)}
 @media (max-width:880px){.svc{grid-template-columns:1fr}}
 
-/* library */
-.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
-.chip{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:.45rem .9rem;font:500 .88rem var(--body);cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.lib{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.item{display:grid;gap:.7rem;align-content:start;cursor:pointer;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit;min-width:0}
-.item:hover .shot{transform:translateY(-4px);box-shadow:0 18px 40px rgb(0 0 0 / .14)}
-.shot{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:transform .3s,box-shadow .3s;position:relative;max-width:100%}
-.item .meta{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline}
-.item h3{font-size:1rem}
-.item .by{font:500 .75rem var(--mono);color:var(--muted);white-space:nowrap}
-.item p{color:var(--muted);font-size:.92rem}
-.badge{position:absolute;top:10px;left:10px;z-index:2;font:600 .68rem var(--mono);letter-spacing:.04em;background:var(--surface);color:var(--ink);border-radius:6px;padding:3px 7px;border:1px solid var(--line)}
-@media (max-width:880px){.lib{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.lib{grid-template-columns:1fr}}
-
-/* mini site mockups (drawn in CSS) */
-.mock{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;font-family:var(--body)}
-.mock .nav{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:6% 7% 0;font-size:.62rem;font-weight:600}
-.mock .nav i{font-style:normal;opacity:.7;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mock .hd{padding:0 7%;display:grid;align-content:center;gap:.35rem}
-.mock .hd strong{font-family:var(--display);font-size:clamp(.95rem,2vw,1.35rem);line-height:1.1}
-.mock .hd span{font-size:.62rem;opacity:.8}
-.mock .hd .b{justify-self:start;font-size:.58rem;font-weight:600;padding:.3rem .6rem;border-radius:99px;margin-top:.2rem}
-.mock .ft{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:0 7% 6%}
-.mock .ft div{border-radius:5px;height:26px}
-.m-cafe{background:radial-gradient(120% 90% at 85% 15%,#d79a5a 0,#8a4f26 45%,#2b1a10 100%);color:#fff7ee}
-.m-cafe .b{background:#fff7ee;color:#2b1a10}.m-cafe .ft div{background:rgb(255 247 238 / .16)}
-.m-auto{background:linear-gradient(160deg,#1d2733 0,#0d1217 70%);color:#e9eef3}
-.m-auto .hd strong{color:#ffd23f}.m-auto .b{background:#ffd23f;color:#0d1217}.m-auto .ft div{background:#26313d}
-.m-salon{background:linear-gradient(180deg,#f4ece6,#e7d6cb);color:#3b2a24}
-.m-salon .hd strong{font-family:Georgia,"Noto Sans Armenian","Times New Roman",serif;font-weight:400;font-size:clamp(1.05rem,2.2vw,1.5rem)}
-.m-salon .b{background:#3b2a24;color:#f4ece6}.m-salon .ft div{background:#d9c3b5}
-.m-dent{background:linear-gradient(180deg,#f2f8fb,#dbeef6);color:#0d3c55}
-.m-dent .b{background:#1488c4;color:#fff}.m-dent .ft div{background:#c4e2ef}
-.m-map{background:var(--block)}
-.m-map canvas{position:absolute;inset:0;width:100%;height:100%}
-.m-flowers{background:linear-gradient(140deg,#20321f,#0f1a10);color:#f2ead2}
-.m-flowers .hd strong{color:#f4b6c2}.m-flowers .b{background:#f4b6c2;color:#20321f}.m-flowers .ft div{background:rgb(244 182 194 / .18)}
+/* showcase: phone with a live demo site + map listing before/after */
+.wtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.4rem}
+.wtab{display:flex;align-items:center;gap:.55rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.3rem .9rem .3rem .3rem;font:500 .9rem var(--body);cursor:pointer}
+.wtab img{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none}
+.wtab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.show{display:grid;grid-template-columns:330px 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.show>div{min-width:0}
+.phone{position:relative;width:min(310px,100%);margin:0 auto;aspect-ratio:9/18.5;border:10px solid var(--ink);border-radius:42px;background:var(--ink);box-shadow:0 30px 60px rgb(0 0 0 / .18)}
+.phone::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:84px;height:20px;border-radius:12px;background:var(--ink);z-index:4}
+.screen{position:absolute;inset:0;border-radius:32px;overflow:hidden auto;scrollbar-width:none;overscroll-behavior:contain}
+.screen::-webkit-scrollbar{display:none}
+.hint{position:absolute;bottom:64px;left:50%;transform:translateX(-50%);z-index:3;font:600 .68rem var(--mono);background:rgb(0 0 0 / .55);color:#fff;padding:4px 10px;border-radius:99px;pointer-events:none;transition:opacity .3s}
+.screen.scrolled+.hint{opacity:0}
+/* demo site inside the phone */
+.site{--s-bg:#1d140e;--s-fg:#f6ecdf;--s-acc:#d9a066;--s-ink:#1d140e;--s-head:var(--display);min-height:100%;background:var(--s-bg);color:var(--s-fg);font:13px/1.45 var(--body);position:relative}
+.s-auto{--s-bg:#0f141a;--s-fg:#e9eef3;--s-acc:#ffd23f;--s-ink:#0f141a}
+.s-salon{--s-bg:#f6efe9;--s-fg:#3b2a24;--s-acc:#3b2a24;--s-ink:#f6efe9;--s-head:Georgia,"Noto Sans Armenian","Times New Roman",serif}
+.s-dent{--s-bg:#f4f9fc;--s-fg:#0d3c55;--s-acc:#1488c4;--s-ink:#ffffff}
+.s-flowers{--s-bg:#fbf3f2;--s-fg:#2c1d1f;--s-acc:#c2456a;--s-ink:#ffffff}
+.s-nav{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:36px 16px 10px;color:#fff;font:700 15px var(--s-head)}
+.s-nav i{font-style:normal;font-size:18px;opacity:.9}
+.s-hero{height:330px;background-size:cover;background-position:center;position:relative;display:flex;align-items:flex-end}
+.s-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(0 0 0 / .45) 0,rgb(0 0 0 / 0) 30%,rgb(0 0 0 / .75) 100%)}
+.s-ov{position:relative;z-index:1;padding:16px;color:#fff;display:grid;gap:7px}
+.s-chip{justify-self:start;font:600 10px var(--mono);background:rgb(255 255 255 / .2);backdrop-filter:blur(6px);padding:3px 8px;border-radius:99px}
+.s-ov h4{margin:0;font:700 21px/1.12 var(--s-head);text-wrap:balance}
+.s-ov p{font-size:11.5px;opacity:.85}
+.s-btn{justify-self:start;margin-top:4px;background:var(--s-acc);color:var(--s-ink);font:600 12px var(--body);padding:9px 14px;border-radius:99px}
+.s-hero .s-btn{background:#fff;color:#111}
+.s-sec{padding:18px 16px 6px;display:grid;gap:10px}
+.s-sec h5{margin:0;font:700 15px var(--s-head)}
+.s-price{list-style:none;margin:0;padding:0;display:grid}
+.s-price li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--s-fg) 14%,transparent)}
+.s-price b{white-space:nowrap;color:var(--s-acc);font-variant-numeric:tabular-nums}
+.s-auto .s-price b,.s-dent .s-price b,.s-flowers .s-price b{color:var(--s-acc)}
+.s-salon .s-price b{color:var(--s-fg)}
+.s-gal{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 16px 0}
+.s-gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block}
+.s-map{position:relative;height:120px;border-radius:12px;overflow:hidden;background:var(--block)}
+.s-map canvas{position:absolute;inset:0;width:100%;height:100%}
+.s-addr{font-size:11.5px;opacity:.8}
+.s-bar{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px 12px 14px;background:linear-gradient(0deg,var(--s-bg) 70%,transparent);margin-top:14px}
+.s-bar span{text-align:center;padding:10px;border-radius:12px;font:600 12px var(--body);background:var(--s-acc);color:var(--s-ink)}
+.s-bar span+span{background:#25d366;color:#06301a}
+/* story column */
+.story{display:grid;gap:1.1rem;align-content:start}
+.story h3{font-size:clamp(1.2rem,2.2vw,1.6rem)}
+.story>p{color:var(--muted);max-width:56ch}
+.ba{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;display:grid;gap:12px}
+.ba-top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap}
+.ba-top span{font:600 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--paper)}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 .82rem var(--body);padding:.35rem .9rem;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.lc{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:start}
+.lc-ph{height:118px;border-radius:12px;overflow:hidden;background:var(--soft);display:grid;place-items:center;color:var(--muted);font:600 .7rem var(--mono);text-align:center}
+.lc-ph.strip{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:3px;background:none}
+.lc-ph.strip img{width:100%;height:100%;object-fit:cover;display:block}
+.lc-ph.strip img:first-child{grid-row:span 2}
+.lc-b{display:grid;gap:4px;min-width:0}
+.lc-b b{font-size:1rem;line-height:1.25}
+.lc-b small{color:var(--muted);font-size:.8rem}
+.lc-b ul{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:3px;font-size:.84rem}
+.lc-b li{padding-left:1.1rem;position:relative}
+.lc-b li::before{position:absolute;left:0;font-weight:700}
+.lc-b li.bad{color:var(--muted)}
+.lc-b li.bad::before{content:"✕";color:var(--pin)}
+.lc-b li.good::before{content:"✓";color:var(--brand)}
+.lc-ok{display:inline-block;font:600 .66rem var(--mono);color:var(--brand);border:1px solid currentColor;border-radius:99px;padding:1px 6px;margin-left:4px;vertical-align:2px;white-space:nowrap}
+.lc-act{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.lc-act span{font:600 .74rem var(--body);border:1px solid var(--line);border-radius:99px;padding:.3rem .65rem}
+.lc-act span.pri{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.lc{animation:lcIn .35s ease}
+@keyframes lcIn{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.gets{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:.94rem}
+.gets li{padding-left:1.4rem;position:relative}
+.gets li::before{content:"";position:absolute;left:.15rem;top:.35em;width:.45rem;height:.75rem;border:solid var(--brand);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.buy{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:1.1rem}
+.buy .price{font-size:1.6rem}
+.buy small{display:block;color:var(--muted);font:500 .8rem var(--mono);margin-top:.2rem}
+.buy .lbl{font:600 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.snote{font:500 .74rem var(--mono);color:var(--muted)}
+@media (max-width:880px){.show{grid-template-columns:1fr}.phone{width:min(290px,100%)}}
+@media (max-width:460px){.lc{grid-template-columns:92px 1fr}.lc-ph{height:92px}.gets{grid-template-columns:1fr}}
+.res.win .ph{background:url(img/cafe_1.webp) center/cover}
 
 /* checklist tool */
 .tool{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,32px)}
@@ -217,19 +264,6 @@ nav.links a:hover{color:var(--ink)}
 footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
-/* modal */
-dialog{border:0;padding:0;border-radius:20px;width:min(960px,calc(100vw - 32px));max-height:calc(100vh - 48px);background:var(--surface);color:var(--ink)}
-dialog::backdrop{background:rgb(8 14 12 / .55);backdrop-filter:blur(3px)}
-.dlg{display:grid;grid-template-columns:1.3fr 1fr}
-.dlg .pv{position:relative;min-height:420px}
-.dlg .tx{padding:1.6rem;display:grid;gap:1rem;align-content:start}
-.dlg .tx h3{font-size:1.3rem}
-.dlg .tx p{color:var(--muted)}
-.dlg .tx ul{margin:0;padding-left:1.1rem;display:grid;gap:.35rem;font-size:.94rem}
-.dlg .close{position:absolute;top:12px;right:12px;z-index:3;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:1.1rem}
-.note{font:500 .75rem var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:.5rem .7rem}
-@media (max-width:760px){.dlg{grid-template-columns:1fr}.dlg .pv{min-height:300px}}
-
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -301,17 +335,29 @@ dialog::backdrop{background:rgb(8 14 12 / .55);backdrop-filter:blur(3px)}
 <section id="works"><div class="wrap">
   <div class="sec-head">
     <p class="eyebrow" data-i="weyebrow">Примеры работ</p>
-    <h2 data-i="wh">Демо-сайты под разные бизнесы</h2>
-    <p class="lede" data-i="wlede">Это примеры, а не заказы клиентов: так может выглядеть ваш сайт. Нажмите на любой, чтобы посмотреть, что в нём есть.</p>
+    <h2 data-i="wh">Посмотрите, как это будет выглядеть у вас</h2>
+    <p class="lede" data-i="wlede">Пять примеров для разных бизнесов.</p>
   </div>
-  <div class="filters" role="group">
-    <button class="chip" aria-pressed="true" data-f="all" data-i="c0">Все</button>
-    <button class="chip" aria-pressed="false" data-f="shop" data-i="c1">Еда и магазины</button>
-    <button class="chip" aria-pressed="false" data-f="service" data-i="c2">Услуги</button>
-    <button class="chip" aria-pressed="false" data-f="beauty" data-i="c3">Красота и здоровье</button>
-    <button class="chip" aria-pressed="false" data-f="maps" data-i="c4">Карты</button>
+  <div class="wtabs" role="tablist" id="wtabs"></div>
+  <div class="show" role="tabpanel">
+    <div><div class="phone"><div class="screen" id="screen"></div><div class="hint" id="hint"></div></div></div>
+    <div class="story">
+      <p class="eyebrow" id="sk"></p>
+      <h3 id="st"></h3>
+      <p id="sd"></p>
+      <div class="ba">
+        <div class="ba-top"><span id="lst"></span><div class="seg" role="group"><button type="button" data-ba="before" aria-pressed="false" id="bBefore"></button><button type="button" data-ba="after" aria-pressed="true" id="bAfter"></button></div></div>
+        <div id="listing"></div>
+      </div>
+      <p class="lbl eyebrow" id="sgets" style="color:var(--muted)"></p>
+      <ul class="gets" id="sl"></ul>
+      <div class="buy">
+        <div><div class="lbl" id="buyT"></div><div class="price" id="sp"></div><small id="sp2"></small></div>
+        <a class="btn primary" id="sbuy" target="_blank" rel="noopener"></a>
+      </div>
+      <p class="snote" id="snote"></p>
+    </div>
   </div>
-  <div class="lib" id="lib"></div>
 </div></section>
 
 <section id="check" style="background:var(--soft)"><div class="wrap">
@@ -391,12 +437,6 @@ dialog::backdrop{background:rgb(8 14 12 / .55);backdrop-filter:blur(3px)}
 
 <footer><div class="wrap"><span data-i="ft1">Сайты и карты для местного бизнеса</span><span data-i="ft2">Все примеры на странице демонстрационные</span></div></footer>
 
-<dialog id="dlg" aria-labelledby="dlg-t">
-  <button class="close" type="button" aria-label="✕" id="dlg-x">✕</button>
-  <div class="dlg"><div class="pv shot" id="dlg-pv" style="border:0;border-radius:0;aspect-ratio:auto"></div>
-  <div class="tx"><p class="eyebrow" id="dlg-k"></p><h3 id="dlg-t"></h3><p id="dlg-d"></p><ul id="dlg-l"></ul><p class="note" data-i="dnote">Демонстрационный пример. Название и данные выдуманы.</p><a class="btn primary" href="#contact" id="dlg-c" data-i="want">Хочу похожий</a></div></div>
-</dialog>
-
 <script>
 (function(){
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -454,13 +494,6 @@ ru:{
  phru:"Телефон · Россия",pham:"Телефон · Армения",open:"Открыть",copy:"Копировать",copied:"Скопировано",selected:"Выделено",
  ft1:"Сайты и карты для местного бизнеса",ft2:"Все примеры на странице демонстрационные",
  dnote:"Демонстрационный пример. Название и данные выдуманы.",want:"Хочу похожий",
- works:{
-  cafe:{k:"Кофейня",t:"«Зерно» у метро",d:"Сайт для кофейни: меню с ценами, часы, как пройти от метро и кнопка «Заказать с собой».",l:["Меню с ценами, которое легко менять","Блок «Как нас найти» с картой","Кнопки звонка и Telegram","Та же структура, что в карточке на карте"],nav:"Зерно",h:"Кофе, который ждёт у метро",s:"с 8:00 до 22:00 · ул. Ленина, 12",b:"Меню"},
-  auto:{k:"Автосервис",t:"«Гараж 24»: ремонт и шины",d:"Страница с прайсом на популярные работы и записью на удобное время.",l:["Прайс на замену масла, колодок, шин","Запись через WhatsApp в одно касание","Режим работы и проезд для машин","Фото боксов и оборудования"],nav:"ГАРАЖ 24",h:"Шиномонтаж без очереди",s:"запись на время · 3 бокса",b:"Записаться"},
-  salon:{k:"Салон красоты",t:"«Лён»: маникюр и брови",d:"Спокойный сайт салона: мастера, цены по услугам и запись через мессенджер.",l:["Карточки мастеров с работами","Цены по категориям услуг","Запись в Telegram или WhatsApp","Ссылка на отзывы в картах"],nav:"Лён",h:"Маникюр и брови в тишине",s:"2 мастера · без спешки",b:"Записаться"},
-  dent:{k:"Стоматология",t:"«Дента Плюс»: семейная клиника",d:"Сайт клиники с врачами, ценами на приём и понятной записью для родителей с детьми.",l:["Врачи и их специализации","Цены на консультацию и лечение","Лицензия и документы","Запись по телефону и в мессенджере"],nav:"Дента Плюс",h:"Лечим зубы всей семьёй",s:"детский врач · без боли",b:"Записаться"},
-  flowers:{k:"Цветы",t:"«Пион»: букеты с доставкой",d:"Витрина букетов с ценами и доставкой по району за два часа.",l:["Каталог букетов с ценами","Доставка и самовывоз","Заказ в WhatsApp с фото букета","Удобно с телефона"],nav:"Пион",h:"Букеты за два часа",s:"доставка по району",b:"Выбрать букет"},
-  card:{k:"Карточка на картах",t:"Карточка: до и после",d:"Что меняется в карточке организации: категории, фото, услуги, ответы на отзывы.",l:["Точные категории вместо одной общей","Часы работы, включая праздники","Фото фасада, входа и зала","Ответ на каждый отзыв"]}}
 },
 en:{
  title:"Websites & Maps for Business",
@@ -513,13 +546,6 @@ en:{
  phru:"Phone · Russia",pham:"Phone · Armenia",open:"Open",copy:"Copy",copied:"Copied",selected:"Selected",
  ft1:"Websites and map listings for local businesses",ft2:"All examples on this page are demos",
  dnote:"Demo example. The name and details are made up.",want:"I want one like this",
- works:{
-  cafe:{k:"Coffee shop",t:"Grain, by the metro",d:"A coffee shop site: menu with prices, hours, directions from the metro and an “Order to go” button.",l:["A menu with prices that’s easy to update","“How to find us” block with a map","Call and Telegram buttons","Same structure as the map listing"],nav:"Grain",h:"Coffee waiting for you by the metro",s:"8 am – 10 pm · 12 Main St.",b:"Menu"},
-  auto:{k:"Car service",t:"Garage 24: repairs and tires",d:"A page with prices for popular jobs and booking at a convenient time.",l:["Prices for oil, brake pads and tire changes","One-tap booking via WhatsApp","Opening hours and car access","Photos of the bays and equipment"],nav:"GARAGE 24",h:"Tire service with no queue",s:"book a time · 3 bays",b:"Book"},
-  salon:{k:"Beauty salon",t:"Linen: nails and brows",d:"A calm salon site: masters, prices by service and booking via messenger.",l:["Master profiles with their work","Prices by service category","Booking in Telegram or WhatsApp","Link to reviews on the maps"],nav:"Linen",h:"Nails and brows in quiet",s:"2 masters · no rush",b:"Book"},
-  dent:{k:"Dental clinic",t:"Denta Plus: family clinic",d:"A clinic site with doctors, consultation prices and easy booking for parents with kids.",l:["Doctors and their specialties","Prices for consultation and treatment","License and documents","Booking by phone or messenger"],nav:"Denta Plus",h:"Dental care for the whole family",s:"pediatric dentist · pain-free",b:"Book"},
-  flowers:{k:"Florist",t:"Peony: bouquets delivered",d:"A bouquet showcase with prices and delivery across the neighborhood within two hours.",l:["Bouquet catalog with prices","Delivery and pickup","Order on WhatsApp with a bouquet photo","Easy to use on a phone"],nav:"Peony",h:"Bouquets in two hours",s:"delivery across the area",b:"Choose a bouquet"},
-  card:{k:"Map listing",t:"Listing: before and after",d:"What changes in a business listing: categories, photos, services, replies to reviews.",l:["Precise categories instead of one generic","Opening hours, including holidays","Photos of the front, entrance and interior","A reply to every review"]}}
 },
 hy:{
  title:"Կայքեր և քարտեզներ բիզնեսի համար",
@@ -572,56 +598,108 @@ hy:{
  phru:"Հեռախոս · Ռուսաստան",pham:"Հեռախոս · Հայաստան",open:"Բացել",copy:"Պատճենել",copied:"Պատճենված է",selected:"Ընտրված է",
  ft1:"Կայքեր և քարտեր տեղական բիզնեսի համար",ft2:"Էջի բոլոր օրինակները ցուցադրական են",
  dnote:"Ցուցադրական օրինակ։ Անվանումը և տվյալները հորինված են։",want:"Ուզում եմ նմանը",
- works:{
-  cafe:{k:"Սրճարան",t:"«Հատիկ»՝ մետրոյի մոտ",d:"Սրճարանի կայք՝ մենյու գներով, աշխատանքային ժամեր, ինչպես հասնել մետրոյից և «Պատվիրել տանելու» կոճակ։",l:["Մենյու գներով, որը հեշտ է փոխել","«Ինչպես գտնել մեզ» բաժին՝ քարտեզով","Զանգի և Telegram-ի կոճակներ","Նույն կառուցվածքը, ինչ քարտեզի քարտում"],nav:"Հատիկ",h:"Սուրճ, որ սպասում է մետրոյի մոտ",s:"8:00–22:00 · Աբովյան 12",b:"Մենյու"},
-  auto:{k:"Ավտոսպասարկում",t:"«Գարաժ 24»՝ նորոգում և անվադողեր",d:"Էջ՝ հայտնի աշխատանքների գնացուցակով և հարմար ժամի գրանցմամբ։",l:["Յուղի, կոճղակների, անվադողերի փոխարինման գներ","Գրանցում WhatsApp-ով մեկ հպումով","Աշխատանքային ժամեր և մուտք մեքենաների համար","Բոքսերի և սարքավորումների լուսանկարներ"],nav:"ԳԱՐԱԺ 24",h:"Անվադողեր առանց հերթի",s:"գրանցում ժամով · 3 բոքս",b:"Գրանցվել"},
-  salon:{k:"Գեղեցկության սրահ",t:"«Վուշ»՝ մատնահարդարում և հոնքեր",d:"Սրահի հանգիստ կայք՝ վարպետներ, գներ ըստ ծառայությունների և գրանցում մեսենջերով։",l:["Վարպետների քարտեր՝ աշխատանքներով","Գներ ըստ ծառայությունների","Գրանցում Telegram-ով կամ WhatsApp-ով","Հղում քարտեզների կարծիքներին"],nav:"Վուշ",h:"Մատնահարդարում լռության մեջ",s:"2 վարպետ · առանց շտապելու",b:"Գրանցվել"},
-  dent:{k:"Ստոմատոլոգիա",t:"«Դենտա Պլյուս»՝ ընտանեկան կլինիկա",d:"Կլինիկայի կայք՝ բժիշկներով, ընդունելության գներով և հարմար գրանցմամբ երեխաներով ծնողների համար։",l:["Բժիշկներ և նրանց մասնագիտացումները","Խորհրդատվության և բուժման գներ","Լիցենզիա և փաստաթղթեր","Գրանցում հեռախոսով և մեսենջերով"],nav:"Դենտա Պլյուս",h:"Ատամներ ողջ ընտանիքի համար",s:"մանկական բժիշկ · առանց ցավի",b:"Գրանցվել"},
-  flowers:{k:"Ծաղիկներ",t:"«Քաջվարդ»՝ ծաղկեփնջեր առաքմամբ",d:"Ծաղկեփնջերի ցուցափեղկ՝ գներով և թաղամասում երկու ժամում առաքմամբ։",l:["Ծաղկեփնջերի կատալոգ գներով","Առաքում և ինքնավերցում","Պատվեր WhatsApp-ով՝ փնջի լուսանկարով","Հարմար է հեռախոսով"],nav:"Քաջվարդ",h:"Ծաղկեփնջեր երկու ժամում",s:"առաքում թաղամասում",b:"Ընտրել փունջ"},
-  card:{k:"Քարտ քարտեզում",t:"Քարտ՝ առաջ և հետո",d:"Ինչ է փոխվում կազմակերպության քարտում՝ կատեգորիաներ, լուսանկարներ, ծառայություններ, պատասխաններ կարծիքներին։",l:["Ճշգրիտ կատեգորիաներ՝ մեկ ընդհանուրի փոխարեն","Աշխատանքային ժամեր, ներառյալ տոները","Ճակատի, մուտքի և սրահի լուսանկարներ","Պատասխան յուրաքանչյուր կարծիքի"]}}
 }};
 const weights=[12,12,10,8,12,12,8,12,6,8];
-const works=[
- {id:"cafe",f:"shop",m:"m-cafe"},{id:"auto",f:"service",m:"m-auto"},{id:"salon",f:"beauty",m:"m-salon"},
- {id:"dent",f:"beauty",m:"m-dent"},{id:"flowers",f:"shop",m:"m-flowers"},{id:"card",f:"maps",m:"m-map",map:true}];
 let L="ru";
 
-/* ---------- library ---------- */
-const lib=document.getElementById("lib");
-function mockHTML(w){
-  if(w.map) return '<div class="mock m-map"><canvas data-mini></canvas></div>';
-  const x=T[L].works[w.id];
-  return `<div class="mock ${w.m}"><div class="nav"><span>${x.nav}</span><i>${T[L].mnav}</i></div><div class="hd"><strong>${x.h}</strong><span>${x.s}</span><span class="b">${x.b}</span></div><div class="ft"><div></div><div></div><div></div></div></div>`;
+/* ---------- showcase ---------- */
+const ORDER=["cafe","auto","salon","dent","flowers"];
+const DEMO={
+ru:{ui:{weyebrow:"Примеры работ",wh:"Посмотрите, как это будет выглядеть у вас",wlede:"Пять примеров для разных бизнесов. Листайте сайт прямо в телефоне и переключайте карточку на карте: какой она бывает обычно и какой станет после работы.",
+  before:"До",after:"После",lst:"Карточка на карте",noPhoto:"нет<br>фото",noHours:"Часы работы не указаны",noPrices:"Нет услуг и цен",noSite:"Нет ссылки на сайт",route:"Маршрут",call:"Позвонить",siteB:"Сайт",verified:"владелец",photos:"фото",scroll:"листайте ↓",gets:"Что получает владелец",buyT:"Такой сайт",buyT2:"Вместе с карточками: ",buy:"Хочу такой",snote:"Пример: название и цены выдуманы, фото с Unsplash.",tg:n=>`Здравствуйте! Хочу сайт как в примере «${n}».`},
+ d:{
+  cafe:{k:"Кофейня",t:"«Зерно», кофейня у метро",d:"Человек ищет «кофе рядом», видит полную карточку с фото и меню, жмёт «Сайт» и сразу заказывает с собой.",l:["Меню с ценами, которое легко менять","Кнопка «Заказать с собой» в WhatsApp","Карта «как пройти от метро»","Те же фото и часы, что в карточке"],
+   s:{nav:"Зерно",chip:"Открыто до 22:00",h:"Кофе, который ждёт у метро",sub:"ул. Ленина, 12 · 3 минуты от метро",cta:"Заказать с собой",mt:"Меню",items:[["Капучино 300 мл","220 ₽"],["Флэт уайт","240 ₽"],["Раф лавандовый","290 ₽"],["Круассан с миндалём","190 ₽"]],ft:"Как нас найти",addr:"ул. Ленина, 12 · каждый день 8:00–22:00"},
+   c:{cat:"Кофейня",hours:"Открыто до 22:00",prices:"Капучино 220 ₽ · Флэт уайт 240 ₽",n:24}},
+  auto:{k:"Автосервис",t:"«Гараж 24», ремонт и шиномонтаж",d:"Водитель с пробитым колесом ищет шиномонтаж рядом. У «Гаража 24» видно цены и свободное время, он записывается за минуту.",l:["Прайс на частые работы","Запись на время через WhatsApp","Как заехать и где парковка","Фото боксов, чтобы было доверие"],
+   s:{nav:"ГАРАЖ 24",chip:"Работаем без выходных",h:"Шиномонтаж без очереди",sub:"запись на время · 3 бокса · кофе, пока ждёте",cta:"Записаться",mt:"Цены",items:[["Шиномонтаж R13–R16","от 1 600 ₽"],["Замена масла","от 800 ₽"],["Замена колодок","от 1 200 ₽"],["Диагностика","бесплатно"]],ft:"Как заехать",addr:"Промзона, 4 · 9:00–21:00"},
+   c:{cat:"Автосервис, шиномонтаж",hours:"Открыто до 21:00",prices:"Шиномонтаж от 1 600 ₽ · Масло от 800 ₽",n:18}},
+  salon:{k:"Салон",t:"«Лён», маникюр и брови",d:"Девушка выбирает, где сделать маникюр. Фото работ и понятные цены решают за неё, а запись в Telegram занимает пару касаний.",l:["Фото работ мастеров","Цена каждой услуги","Запись в Telegram или WhatsApp","Ссылка на отзывы в картах"],
+   s:{nav:"Лён",chip:"Свободно сегодня с 16:00",h:"Маникюр и брови в тишине",sub:"2 мастера · стерильные инструменты",cta:"Записаться",mt:"Услуги",items:[["Маникюр с покрытием","1 800 ₽"],["Снятие и маникюр","2 100 ₽"],["Коррекция бровей","700 ₽"],["Ламинирование бровей","1 500 ₽"]],ft:"Где мы",addr:"ул. Садовая, 8 · 10:00–21:00"},
+   c:{cat:"Ногтевая студия, брови",hours:"Открыто до 21:00",prices:"Маникюр 1 800 ₽ · Брови 700 ₽",n:31}},
+  dent:{k:"Стоматология",t:"«Дента Плюс», семейная клиника",d:"Мама ищет детского стоматолога. На сайте видно врачей, цену первого приёма и лицензию, и звонить уже не страшно.",l:["Врачи с фото и опытом","Цена первого приёма","Лицензия на виду","Запись по телефону и в мессенджере"],
+   s:{nav:"Дента Плюс",chip:"Принимаем детей с 3 лет",h:"Лечим зубы всей семьёй",sub:"бесплатная консультация · рассрочка",cta:"Записаться",mt:"Цены",items:[["Консультация","бесплатно"],["Лечение кариеса","от 3 500 ₽"],["Чистка зубов","4 000 ₽"],["Детский приём","от 1 500 ₽"]],ft:"Как добраться",addr:"пр. Мира, 21 · 9:00–20:00"},
+   c:{cat:"Стоматологическая клиника",hours:"Открыто до 20:00",prices:"Консультация бесплатно · Чистка 4 000 ₽",n:15}},
+  flowers:{k:"Цветы",t:"«Пион», букеты с доставкой",d:"Человек вспомнил про праздник вечером. Открыл карточку, увидел букеты с ценами и заказал доставку через сайт.",l:["Каталог букетов с ценами","Доставка за 2 часа","Заказ в WhatsApp по фото","Открытка в подарок"],
+   s:{nav:"Пион",chip:"Доставка за 2 часа",h:"Букеты, которые хочется дарить",sub:"собираем при вас · открытка в подарок",cta:"Выбрать букет",mt:"Букеты",items:[["Пионовидные розы","3 900 ₽"],["Сезонный микс","2 700 ₽"],["Тюльпаны","2 200 ₽"],["Доставка по району","300 ₽"]],ft:"Самовывоз",addr:"ул. Цветочная, 3 · 8:00–22:00"},
+   c:{cat:"Магазин цветов, доставка",hours:"Открыто до 22:00",prices:"Букеты от 2 200 ₽ · Доставка 300 ₽",n:27}}}},
+en:{ui:{weyebrow:"Examples",wh:"See how it would look for you",wlede:"Five examples for different businesses. Scroll the site right inside the phone and flip the map listing between how it usually looks and how it looks after my work.",
+  before:"Before",after:"After",lst:"Map listing",noPhoto:"no<br>photo",noHours:"Opening hours not listed",noPrices:"No services or prices",noSite:"No website link",route:"Directions",call:"Call",siteB:"Website",verified:"owner",photos:"photos",scroll:"scroll ↓",gets:"What the owner gets",buyT:"A site like this",buyT2:"With map listings: ",buy:"I want one",snote:"Example: the name and prices are made up, photos from Unsplash.",tg:n=>`Hi! I'd like a website like the “${n}” example.`},
+ d:{
+  cafe:{k:"Coffee shop",t:"Grain, coffee by the metro",d:"Someone searches “coffee near me”, sees a complete listing with photos and a menu, taps “Website” and orders to go right away.",l:["A menu with prices that’s easy to update","“Order to go” button via WhatsApp","Map with the way from the metro","Same photos and hours as the listing"],
+   s:{nav:"Grain",chip:"Open until 10 pm",h:"Coffee waiting for you by the metro",sub:"12 Main St. · 3 min from the metro",cta:"Order to go",mt:"Menu",items:[["Cappuccino 10 oz","$3.00"],["Flat white","$3.30"],["Lavender raf","$3.80"],["Almond croissant","$2.50"]],ft:"How to find us",addr:"12 Main St. · daily 8 am–10 pm"},
+   c:{cat:"Coffee shop",hours:"Open until 10 pm",prices:"Cappuccino $3.00 · Flat white $3.30",n:24}},
+  auto:{k:"Car service",t:"Garage 24, repairs and tires",d:"A driver with a flat tire searches for a tire shop nearby. Garage 24 shows prices and open slots, so booking takes a minute.",l:["Prices for common jobs","Time-slot booking via WhatsApp","How to drive in and where to park","Photos of the bays to build trust"],
+   s:{nav:"GARAGE 24",chip:"Open 7 days a week",h:"Tire service with no queue",sub:"book a time · 3 bays · coffee while you wait",cta:"Book",mt:"Prices",items:[["Tire fitting R13–R16","from $20"],["Oil change","from $10"],["Brake pads","from $15"],["Diagnostics","free"]],ft:"How to get here",addr:"4 Industrial Rd · 9 am–9 pm"},
+   c:{cat:"Car repair, tire shop",hours:"Open until 9 pm",prices:"Tires from $20 · Oil from $10",n:18}},
+  salon:{k:"Salon",t:"Linen, nails and brows",d:"A woman is choosing where to get her nails done. Photos of real work and clear prices decide it, and booking in Telegram takes two taps.",l:["Photos of the masters’ work","A price for every service","Booking in Telegram or WhatsApp","Link to map reviews"],
+   s:{nav:"Linen",chip:"Free today from 4 pm",h:"Nails and brows in quiet",sub:"2 masters · sterile tools",cta:"Book",mt:"Services",items:[["Gel manicure","$22"],["Removal + manicure","$26"],["Brow shaping","$9"],["Brow lamination","$19"]],ft:"Where we are",addr:"8 Garden St. · 10 am–9 pm"},
+   c:{cat:"Nail studio, brow bar",hours:"Open until 9 pm",prices:"Manicure $22 · Brows $9",n:31}},
+  dent:{k:"Dental",t:"Denta Plus, family clinic",d:"A mom is looking for a kids’ dentist. The site shows the doctors, the price of a first visit and the license, so calling feels easy.",l:["Doctors with photos and experience","Price of the first visit","License in plain sight","Booking by phone or messenger"],
+   s:{nav:"Denta Plus",chip:"Kids from age 3",h:"Dental care for the whole family",sub:"free consultation · payment plans",cta:"Book",mt:"Prices",items:[["Consultation","free"],["Cavity treatment","from $45"],["Teeth cleaning","$50"],["Kids’ visit","from $19"]],ft:"How to get here",addr:"21 Peace Ave · 9 am–8 pm"},
+   c:{cat:"Dental clinic",hours:"Open until 8 pm",prices:"Consultation free · Cleaning $50",n:15}},
+  flowers:{k:"Florist",t:"Peony, bouquets delivered",d:"Someone remembers a celebration in the evening. They open the listing, see bouquets with prices and order delivery from the site.",l:["Bouquet catalog with prices","Delivery in 2 hours","Order on WhatsApp by photo","A free greeting card"],
+   s:{nav:"Peony",chip:"Delivery in 2 hours",h:"Bouquets you’ll want to give",sub:"made while you wait · free card",cta:"Choose a bouquet",mt:"Bouquets",items:[["Garden roses","$49"],["Seasonal mix","$34"],["Tulips","$28"],["Local delivery","$4"]],ft:"Pickup",addr:"3 Flower St. · 8 am–10 pm"},
+   c:{cat:"Florist, delivery",hours:"Open until 10 pm",prices:"Bouquets from $28 · Delivery $4",n:27}}}},
+hy:{ui:{weyebrow:"Աշխատանքների օրինակներ",wh:"Տեսեք, թե ինչպես դա կլինի ձեզ մոտ",wlede:"Հինգ օրինակ տարբեր բիզնեսների համար։ Թերթեք կայքը հենց հեռախոսում և փոխեք քարտեզի քարտը՝ ինչպիսին է այն սովորաբար և ինչպիսին կդառնա աշխատանքից հետո։",
+  before:"Առաջ",after:"Հետո",lst:"Քարտ քարտեզում",noPhoto:"նկար<br>չկա",noHours:"Աշխատանքային ժամերը նշված չեն",noPrices:"Ծառայություններ և գներ չկան",noSite:"Կայքի հղում չկա",route:"Երթուղի",call:"Զանգել",siteB:"Կայք",verified:"սեփականատեր",photos:"լուսանկար",scroll:"թերթեք ↓",gets:"Ինչ է ստանում սեփականատերը",buyT:"Այսպիսի կայք",buyT2:"Քարտերի հետ միասին՝ ",buy:"Ուզում եմ այսպիսին",snote:"Օրինակ․ անվանումը և գները հորինված են, լուսանկարները՝ Unsplash-ից։",tg:n=>`Բարև ձեզ։ Ուզում եմ կայք, ինչպես «${n}» օրինակում։`},
+ d:{
+  cafe:{k:"Սրճարան",t:"«Հատիկ»՝ սրճարան մետրոյի մոտ",d:"Մարդը որոնում է «սուրճ մոտակայքում», տեսնում է լրիվ քարտ՝ լուսանկարներով և մենյուով, սեղմում «Կայք» և անմիջապես պատվիրում տանելու։",l:["Մենյու գներով, որը հեշտ է փոխել","«Պատվիրել տանելու» կոճակ WhatsApp-ով","Քարտեզ՝ ինչպես հասնել մետրոյից","Նույն լուսանկարներն ու ժամերը, ինչ քարտում"],
+   s:{nav:"Հատիկ",chip:"Բաց է մինչև 22:00",h:"Սուրճ, որ սպասում է մետրոյի մոտ",sub:"Աբովյան 12 · 3 րոպե մետրոյից",cta:"Պատվիրել տանելու",mt:"Մենյու",items:[["Կապուչինո 300 մլ","1 100 ֏"],["Ֆլեթ ուայթ","1 200 ֏"],["Լավանդայով ռաֆ","1 400 ֏"],["Նշով կրուասան","900 ֏"]],ft:"Ինչպես գտնել մեզ",addr:"Աբովյան 12 · ամեն օր 8:00–22:00"},
+   c:{cat:"Սրճարան",hours:"Բաց է մինչև 22:00",prices:"Կապուչինո 1 100 ֏ · Ֆլեթ ուայթ 1 200 ֏",n:24}},
+  auto:{k:"Ավտոսպասարկում",t:"«Գարաժ 24»՝ նորոգում և անվադողեր",d:"Ծակ անվադողով վարորդը որոնում է մոտակա վուլկանացում։ «Գարաժ 24»-ում երևում են գներն ու ազատ ժամերը, և նա գրանցվում է մեկ րոպեում։",l:["Հաճախակի աշխատանքների գնացուցակ","Ժամով գրանցում WhatsApp-ով","Ինչպես մտնել և որտեղ կայանել","Բոքսերի լուսանկարներ՝ վստահության համար"],
+   s:{nav:"ԳԱՐԱԺ 24",chip:"Առանց հանգստյան օրերի",h:"Անվադողեր առանց հերթի",sub:"գրանցում ժամով · 3 բոքս · սուրճ սպասելիս",cta:"Գրանցվել",mt:"Գներ",items:[["Անվադողերի փոխում R13–R16","7 000 ֏-ից"],["Յուղի փոխում","3 500 ֏-ից"],["Կոճղակների փոխում","5 500 ֏-ից"],["Ախտորոշում","անվճար"]],ft:"Ինչպես հասնել",addr:"Արշակունյաց 4 · 9:00–21:00"},
+   c:{cat:"Ավտոսպասարկում, վուլկանացում",hours:"Բաց է մինչև 21:00",prices:"Անվադողեր 7 000 ֏-ից · Յուղ 3 500 ֏-ից",n:18}},
+  salon:{k:"Սրահ",t:"«Վուշ»՝ մատնահարդարում և հոնքեր",d:"Աղջիկն ընտրում է, թե որտեղ անել մատնահարդարում։ Աշխատանքների լուսանկարներն ու պարզ գները որոշում են ամեն ինչ, իսկ Telegram-ով գրանցումը տևում է երկու հպում։",l:["Վարպետների աշխատանքների լուսանկարներ","Գին յուրաքանչյուր ծառայության համար","Գրանցում Telegram-ով կամ WhatsApp-ով","Հղում քարտեզի կարծիքներին"],
+   s:{nav:"Վուշ",chip:"Ազատ է այսօր 16:00-ից",h:"Մատնահարդարում լռության մեջ",sub:"2 վարպետ · ստերիլ գործիքներ",cta:"Գրանցվել",mt:"Ծառայություններ",items:[["Մատնահարդարում ծածկույթով","8 000 ֏"],["Հեռացում և մատնահարդարում","9 500 ֏"],["Հոնքերի ուղղում","3 000 ֏"],["Հոնքերի լամինացիա","7 000 ֏"]],ft:"Որտեղ ենք",addr:"Սայաթ-Նովա 8 · 10:00–21:00"},
+   c:{cat:"Եղունգների ստուդիա, հոնքեր",hours:"Բաց է մինչև 21:00",prices:"Մատնահարդարում 8 000 ֏ · Հոնքեր 3 000 ֏",n:31}},
+  dent:{k:"Ստոմատոլոգիա",t:"«Դենտա Պլյուս»՝ ընտանեկան կլինիկա",d:"Մայրը մանկական ատամնաբույժ է փնտրում։ Կայքում երևում են բժիշկները, առաջին ընդունելության գինը և լիցենզիան, և զանգելն այլևս վախենալու չէ։",l:["Բժիշկներ՝ լուսանկարով և փորձով","Առաջին ընդունելության գինը","Լիցենզիան՝ տեսանելի տեղում","Գրանցում հեռախոսով և մեսենջերով"],
+   s:{nav:"Դենտա Պլյուս",chip:"Ընդունում ենք 3 տարեկանից",h:"Ատամներ ողջ ընտանիքի համար",sub:"անվճար խորհրդատվություն · ապառիկ",cta:"Գրանցվել",mt:"Գներ",items:[["Խորհրդատվություն","անվճար"],["Կարիեսի բուժում","15 000 ֏-ից"],["Ատամների մաքրում","18 000 ֏"],["Մանկական ընդունելություն","7 000 ֏-ից"]],ft:"Ինչպես հասնել",addr:"Կոմիտաս 21 · 9:00–20:00"},
+   c:{cat:"Ստոմատոլոգիական կլինիկա",hours:"Բաց է մինչև 20:00",prices:"Խորհրդատվություն անվճար · Մաքրում 18 000 ֏",n:15}},
+  flowers:{k:"Ծաղիկներ",t:"«Քաջվարդ»՝ ծաղկեփնջեր առաքմամբ",d:"Մարդը երեկոյան հիշեց տոնի մասին։ Բացեց քարտը, տեսավ ծաղկեփնջերը գներով և առաքում պատվիրեց կայքից։",l:["Ծաղկեփնջերի կատալոգ գներով","Առաքում 2 ժամում","Պատվեր WhatsApp-ով՝ ըստ լուսանկարի","Բացիկ՝ նվեր"],
+   s:{nav:"Քաջվարդ",chip:"Առաքում 2 ժամում",h:"Ծաղկեփնջեր, որ ուզում ես նվիրել",sub:"հավաքում ենք ձեր ներկայությամբ · բացիկ նվեր",cta:"Ընտրել փունջ",mt:"Ծաղկեփնջեր",items:[["Քաջվարդանման վարդեր","18 000 ֏"],["Սեզոնային խառնուրդ","12 500 ֏"],["Կակաչներ","10 000 ֏"],["Առաքում թաղամասում","1 500 ֏"]],ft:"Ինքնավերցում",addr:"Թումանյան 3 · 8:00–22:00"},
+   c:{cat:"Ծաղկի խանութ, առաքում",hours:"Բաց է մինչև 22:00",prices:"Ծաղկեփնջեր 10 000 ֏-ից · Առաքում 1 500 ֏",n:27}}}}
+};
+Object.keys(DEMO).forEach(l=>Object.assign(T[l],DEMO[l].ui));
+let cur="cafe",ba="after";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=id=>document.getElementById(id);
+function siteHTML(id,x,u){
+  const s=x.s;
+  return `<div class="site s-${id}"><div class="s-nav"><span>${esc(s.nav)}</span><i>☰</i></div>
+  <div class="s-hero" style="background-image:url(img/${id}_1.webp)"><div class="s-ov"><span class="s-chip">${esc(s.chip)}</span><h4>${esc(s.h)}</h4><p>${esc(s.sub)}</p><span class="s-btn">${esc(s.cta)}</span></div></div>
+  <div class="s-sec"><h5>${esc(s.mt)}</h5><ul class="s-price">${s.items.map(i=>`<li><span>${esc(i[0])}</span><b>${esc(i[1])}</b></li>`).join("")}</ul></div>
+  <div class="s-gal"><img src="img/${id}_2.webp" alt="" loading="lazy"><img src="img/${id}_3.webp" alt="" loading="lazy"></div>
+  <div class="s-sec"><h5>${esc(s.ft)}</h5><div class="s-map"><canvas data-mini></canvas></div><p class="s-addr">${esc(s.addr)}</p></div>
+  <div class="s-bar"><span>${esc(u.call)}</span><span>WhatsApp</span></div></div>`;
+}
+function listingHTML(id,x,u){
+  const c=x.c,name=x.s.nav;
+  if(ba==="before") return `<div class="lc"><div class="lc-ph">${u.noPhoto}</div><div class="lc-b"><b>${esc(name)}</b><small>${esc(c.cat)}</small><ul><li class="bad">${esc(u.noHours)}</li><li class="bad">${esc(u.noPrices)}</li><li class="bad">${esc(u.noSite)}</li></ul><div class="lc-act"><span>${esc(u.route)}</span></div></div></div>`;
+  return `<div class="lc"><div class="lc-ph strip"><img src="img/${id}_1.webp" alt=""><img src="img/${id}_2.webp" alt=""><img src="img/${id}_3.webp" alt=""></div><div class="lc-b"><b>${esc(name)} <span class="lc-ok">✓ ${esc(u.verified)}</span></b><small>${esc(c.cat)} · ${c.n} ${esc(u.photos)}</small><ul><li class="good">${esc(c.hours)}</li><li class="good">${esc(c.prices)}</li></ul><div class="lc-act"><span class="pri">${esc(u.call)}</span><span>${esc(u.route)}</span><span>${esc(u.siteB)}</span></div></div></div>`;
+}
+function renderListing(){
+  const u=DEMO[L].ui,x=DEMO[L].d[cur];
+  $("listing").innerHTML=listingHTML(cur,x,u);
+  $("bBefore").setAttribute("aria-pressed",ba==="before");$("bAfter").setAttribute("aria-pressed",ba==="after");
 }
 function renderLib(){
-  const f=(document.querySelector('.chip[aria-pressed="true"]')||{}).dataset?.f||"all";
-  lib.innerHTML="";
-  works.forEach(w=>{
-    const x=T[L].works[w.id];
-    const b=document.createElement("button");b.className="item";b.type="button";b.dataset.f=w.f;b.hidden=!(f==="all"||w.f===f);
-    b.innerHTML=`<div class="shot"><span class="badge">${T[L].badge}</span>${mockHTML(w)}</div><div class="meta"><h3>${x.t}</h3><span class="by">${x.k}</span></div><p>${x.d}</p>`;
-    b.addEventListener("click",()=>openW(w));lib.appendChild(b);
-  });
-  requestAnimationFrame(()=>document.querySelectorAll("#lib canvas[data-mini]").forEach(drawMini));
+  const u=DEMO[L].ui,x=DEMO[L].d[cur];
+  $("wtabs").innerHTML=ORDER.map(id=>`<button class="wtab" role="tab" type="button" data-w="${id}" aria-selected="${id===cur}"><img src="img/${id}_1.webp" alt="">${esc(DEMO[L].d[id].k)}</button>`).join("");
+  const sc=$("screen");sc.innerHTML=siteHTML(cur,x,u);sc.scrollTop=0;sc.classList.remove("scrolled");
+  $("hint").textContent=u.scroll;
+  $("sk").textContent=x.k;$("st").textContent=x.t;$("sd").textContent=x.d;
+  $("lst").textContent=u.lst;$("bBefore").textContent=u.before;$("bAfter").textContent=u.after;
+  $("sgets").textContent=u.gets;$("sl").innerHTML=x.l.map(v=>`<li>${esc(v)}</li>`).join("");
+  $("buyT").textContent=u.buyT;$("sp").textContent=T[L]["p3$"];$("sp2").textContent=u.buyT2+T[L]["p2$"];
+  const b=$("sbuy");b.textContent=u.buy;b.href="https://t.me/DemPRG?text="+encodeURIComponent(u.tg(x.s.nav));
+  $("snote").textContent=u.snote;
+  renderListing();
+  requestAnimationFrame(()=>sc.querySelectorAll("canvas[data-mini]").forEach(drawMini));
 }
-document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
-  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c));
-  const f=c.dataset.f;lib.querySelectorAll(".item").forEach(i=>i.hidden=!(f==="all"||i.dataset.f===f));
-}));
-const dlg=document.getElementById("dlg");
-function openW(w){
-  const x=T[L].works[w.id];
-  document.getElementById("dlg-pv").innerHTML=mockHTML(w);
-  document.getElementById("dlg-k").textContent=x.k;
-  document.getElementById("dlg-t").textContent=x.t;
-  document.getElementById("dlg-d").textContent=x.d;
-  document.getElementById("dlg-l").innerHTML=x.l.map(v=>`<li>${v}</li>`).join("");
-  if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
-  document.querySelectorAll("#dlg-pv canvas[data-mini]").forEach(drawMini);
-}
-document.getElementById("dlg-x").onclick=()=>dlg.close();
-document.getElementById("dlg-c").onclick=()=>dlg.close();
-dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+$("wtabs").addEventListener("click",e=>{const t=e.target.closest("[data-w]");if(!t)return;cur=t.dataset.w;renderLib()});
+document.querySelectorAll("[data-ba]").forEach(b=>b.addEventListener("click",()=>{ba=b.dataset.ba;renderListing()}));
+$("screen").addEventListener("scroll",e=>{if(e.target.scrollTop>40)e.target.classList.add("scrolled")},{passive:true});
 
 /* ---------- procedural city map ---------- */
 function rng(seed){return()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646}}
