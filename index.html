@@ -306,6 +306,13 @@ nav.links a:hover{color:var(--ink)}
 footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
+/* floating WhatsApp button */
+.wa-fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:8;display:flex;align-items:center;gap:.55rem;background:#25d366;color:#06301a;border-radius:999px;padding:.75rem 1.1rem .75rem .85rem;font:600 .92rem var(--body);text-decoration:none;box-shadow:0 10px 28px rgb(0 0 0 / .25);transition:bottom .25s,transform .2s}
+.wa-fab:hover{transform:translateY(-2px)}
+.wa-fab svg{flex:none}
+.wa-fab.up{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+@media (max-width:560px){.wa-fab{padding:.8rem}.wa-fab span{display:none}}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -482,12 +489,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     </div>
     <div class="cards">
       <div class="cline"><div><div class="k">Telegram</div><div class="val" id="c-tg">@DemPRG</div></div><a class="btn" style="padding:.5rem .9rem;font-size:.82rem" href="https://t.me/DemPRG" target="_blank" rel="noopener" data-i="open">Открыть</a></div>
+      <div class="cline"><div><div class="k">WhatsApp</div><div class="val">+7 926 738-90-12</div></div><a class="btn wa-link" style="padding:.5rem .9rem;font-size:.82rem" target="_blank" rel="noopener" data-i="waBtn">Написать</a></div>
+      <div class="cline"><div><div class="k" data-i="mailk">Почта</div><div class="val" id="c-mail">peterdthegreat@gmail.com</div></div><button type="button" data-copy="c-mail" data-i="copy">Копировать</button></div>
       <div class="cline"><div><div class="k" data-i="phru">Телефон · Россия</div><div class="val" id="c-ph1">+7 916 220-25-34</div><div class="val" id="c-ph2">+7 926 738-90-12</div></div></div>
       <div class="cline"><div><div class="k" data-i="pham">Телефон · Армения</div><div class="val" id="c-ph3">+374 43 22-58-94</div></div><button type="button" data-copy="c-ph3" data-i="copy">Копировать</button></div>
     </div>
   </div>
 </div></section>
 </main>
+
+<a class="wa-fab wa-link" id="wafab" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.6-.5-1-1.2-1.3-1.8-.1-.2 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.6.6-.9 1.4-.9 2.2.1 1 .5 2 1.1 2.8 1.2 1.7 2.7 3 4.6 3.8.5.2 1 .4 1.5.5.6.2 1.2.1 1.7-.2.4-.3.8-.7.9-1.2.1-.3.1-.6 0-.9l-.2-.3z"/></svg><span data-i="waFab">WhatsApp</span></a>
 
 <footer><div class="wrap"><span data-i="ft1">Сайты и карты для местного бизнеса</span><span data-i="ft2">Все примеры на странице демонстрационные</span></div></footer>
 
@@ -887,6 +898,11 @@ hy:{eye:"Լրացուցիչ",h:"Ավելացրեք պատվերին",lede:"Նշ�
   seo:["Կայքը որոնման մեջ","Yandex Webmaster և Google Search Console, հիմնական կարգավորում։"],stats:["Այցելությունների վիճակագրություն","Yandex Metrica կամ Google Analytics և պարզ հաշվետվություն։"],comp:["Մրցակիցների վերլուծություն","Ինչն է ավելի լավ երեք մոտակա մրցակիցների մոտ և ինչ անել ձեզ։"],ads:["Գովազդ քարտեզներում","Կկարգավորեմ վճարովի առաջխաղացում Yandex Maps-ում։ Բյուջեն ձերն է։"],
   photo:["Լուսանկարներ քարտի համար","Նկարում եմ ճակատը, մուտքը, սրահը և ապրանքները, մշակում եմ։"],text:["Տեքստեր","Նկարագրություն, ծառայություններ և մենյու, որոնք հեշտ է կարդալ։"],social:["Սոցցանցերի ձևավորում","Գլխամաս և նկարագրություն Instagram-ում կամ Telegram-ում, հղումներ քարտեզներին և կայքին։"],print:["Այցեքարտեր և ցուցանակներ","Այցեքարտերի, ժամերով ցուցանակների և QR կպչուկների մակետներ տպագրության համար։"]}}};
 T.ru.n5="Услуги";T.en.n5="Add-ons";T.hy.n5="Ծառայություններ";
+Object.assign(T.ru,{waBtn:"Написать",waFab:"Написать в WhatsApp",mailk:"Почта",waText:"Здравствуйте! Пишу с сайта, интересует сайт или карточка на картах."});
+Object.assign(T.en,{waBtn:"Message",waFab:"Chat on WhatsApp",mailk:"Email",waText:"Hi! I found your website and I'm interested in a website or a map listing."});
+Object.assign(T.hy,{waBtn:"Գրել",waFab:"Գրել WhatsApp-ով",mailk:"Էլ. փոստ",waText:"Բարև ձեզ։ Գրում եմ կայքից, հետաքրքրում է կայք կամ քարտ քարտեզում։"});
+function setWa(){document.querySelectorAll(".wa-link").forEach(a=>a.href="https://wa.me/79267389012?text="+encodeURIComponent(T[L].waText))}
+new IntersectionObserver(es=>es.forEach(e=>$("wafab").classList.toggle("up",e.isIntersecting))).observe($("extras"));
 const xsel=new Set();
 function renderExtras(){
   const t=XT[L];
@@ -919,7 +935,7 @@ function setLang(l){
   document.querySelector(".logo").setAttribute("aria-label",T[l].logo);
   document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
   T[l].checks.forEach((c,i)=>document.getElementById("ckt"+i).textContent=c[0]);
-  lastKm="";renderStats();renderLib();renderExtras();renderFaq();score();
+  lastKm="";setWa();renderStats();renderLib();renderExtras();renderFaq();score();
   try{localStorage.setItem("lang",l)}catch(e){}
   if(reduce)requestAnimationFrame(frame);
 }
