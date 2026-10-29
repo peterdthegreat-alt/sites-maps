@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Сайты для местного бизнеса и оформление карточек в Яндекс Картах и Google Картах. Сайт от 5 000 ₽, карточки от 500 ₽.">
+<meta property="og:title" content="Сайты и карты для бизнеса">
+<meta property="og:description" content="Сайты для местного бизнеса и карточки в Яндекс Картах и Google Картах. RU / EN / ՀԱՅ.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z%22 fill=%22%23e5483b%22/%3E%3Ccircle cx=%2212%22 cy=%229%22 r=%222.6%22 fill=%22white%22/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Сайты и карты для бизнеса</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: городская карта как основа — герой с живой картой и выдачей, дальше «библиотека» демо-сайтов, интерактивный чек-лист карточки, форматы, вопросы, контакты. Три языка: RU / EN / HY */
+:root{
+  --paper:#eef2ef; --surface:#ffffff; --ink:#13201c; --muted:#5b6b65; --line:#d6dfda;
+  --street:#ffffff; --block:#e1e8e3; --water:#c9dde4; --park:#d3e6d2;
+  --brand:#0f6b57; --brand-ink:#ffffff; --pin:#e5483b; --star:#e39b16; --soft:#e4efe9;
+  --display:"Unbounded","Noto Sans Armenian","Arial Black",system-ui,sans-serif;
+  --body:"Onest","Noto Sans Armenian",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono","Noto Sans Armenian",ui-monospace,Consolas,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f1715; --surface:#16211e; --ink:#e7efeb; --muted:#93a39d; --line:#263430;
+  --street:#22302c; --block:#18231f; --water:#17303a; --park:#183025;
+  --brand:#3fbf9b; --brand-ink:#06231b; --pin:#ff6b5c; --star:#f2b33d; --soft:#1b2c27; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1715; --surface:#16211e; --ink:#e7efeb; --muted:#93a39d; --line:#263430;
+  --street:#22302c; --block:#18231f; --water:#17303a; --park:#183025;
+  --brand:#3fbf9b; --brand-ink:#06231b; --pin:#ff6b5c; --star:#f2b33d; --soft:#1b2c27; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--body);margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.5rem,3.2vw,2.3rem);line-height:1.15}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font:600 .75rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.lede{color:var(--muted);max-width:60ch}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.2rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .95rem var(--body);text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.btn:hover{transform:translateY(-1px)}
+section{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:grid;gap:.8rem;margin-bottom:2rem}
+
+/* top bar + header */
+.bar{background:var(--ink);color:var(--paper);font:500 .8rem var(--mono)}
+.bar .wrap{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;padding-block:.55rem;text-align:center}
+.bar b{color:var(--paper)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.8rem}
+.logo{display:flex;align-items:center;gap:.55rem;font:700 1rem var(--display);text-decoration:none;min-width:0}
+.logo svg{flex:none}
+.logo span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.links{display:flex;gap:1.4rem;font-weight:500;font-size:.95rem}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.hdr-r{display:flex;align-items:center;gap:.6rem;flex:none}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.langs button{border:0;background:transparent;color:var(--muted);font:600 .75rem var(--mono);padding:.35rem .6rem;border-radius:999px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+@media (max-width:980px){nav.links{display:none}}
+@media (max-width:520px){.logo span{display:none}.hdr-r .btn{padding:.6rem .9rem;font-size:.85rem}}
+
+/* hero */
+.hero{padding-block:clamp(40px,6vw,72px) 0}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.hero-grid>div{min-width:0}
+.hero h1{font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.08;margin-top:1rem}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero .lede{font-size:1.08rem;margin-top:1.2rem}
+.hero .cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.8rem}
+.hero .facts{display:flex;gap:.6rem 1.6rem;flex-wrap:wrap;margin-top:2rem;font:500 .85rem var(--mono);color:var(--muted)}
+.hero .facts span::before{content:"●";color:var(--pin);margin-right:.45rem;font-size:.7em;vertical-align:.15em}
+.mapbox{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--block);aspect-ratio:1/1.02;max-width:100%}
+.mapbox canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.serp{position:absolute;left:14px;right:14px;bottom:14px;display:grid;gap:8px}
+.res{display:grid;grid-template-columns:auto 1fr auto;gap:.7rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.6rem .75rem;box-shadow:0 6px 20px rgb(0 0 0 / .08)}
+.res>div{min-width:0}
+.res .ph{width:42px;height:42px;border-radius:9px;background:var(--soft);display:grid;place-items:center;color:var(--muted);font:600 .62rem var(--mono);text-align:center;line-height:1.1}
+.res.win .ph{background:linear-gradient(135deg,#c98a4b,#6b3f1f)}
+.res b{display:block;font-size:.92rem;line-height:1.2}
+.res small{display:block;color:var(--muted);font-size:.76rem;line-height:1.3;margin-top:2px}
+.res .rt{font:600 .82rem var(--mono);color:var(--star);white-space:nowrap}
+.res.dim{opacity:.62}
+.res .tag{display:inline-block;font:600 .66rem var(--mono);background:var(--brand);color:var(--brand-ink);border-radius:5px;padding:1px 5px;margin-right:4px;vertical-align:1px}
+.searchpill{position:absolute;top:14px;left:14px;right:14px;display:flex;align-items:center;gap:.5rem;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.55rem .9rem;font-size:.9rem;box-shadow:0 4px 14px rgb(0 0 0 / .07)}
+.searchpill .q{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.searchpill .km{font:500 .75rem var(--mono);color:var(--muted);white-space:nowrap}
+@media (max-width:880px){.hero-grid{grid-template-columns:1fr}.mapbox{aspect-ratio:1/1.1}}
+
+/* services strip */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(40px,6vw,72px)}
+.svc article{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;display:grid;gap:.6rem;align-content:start}
+.svc h3{font-size:1.05rem}
+.svc p{color:var(--muted);font-size:.95rem}
+.svc ul{margin:.3rem 0 0;padding-left:1.1rem;font-size:.92rem;display:grid;gap:.25rem}
+.svc .ico{width:38px;height:38px;border-radius:10px;background:var(--soft);display:grid;place-items:center;color:var(--brand)}
+@media (max-width:880px){.svc{grid-template-columns:1fr}}
+
+/* library */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.chip{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:.45rem .9rem;font:500 .88rem var(--body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.lib{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.item{display:grid;gap:.7rem;align-content:start;cursor:pointer;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit;min-width:0}
+.item:hover .shot{transform:translateY(-4px);box-shadow:0 18px 40px rgb(0 0 0 / .14)}
+.shot{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:transform .3s,box-shadow .3s;position:relative;max-width:100%}
+.item .meta{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline}
+.item h3{font-size:1rem}
+.item .by{font:500 .75rem var(--mono);color:var(--muted);white-space:nowrap}
+.item p{color:var(--muted);font-size:.92rem}
+.badge{position:absolute;top:10px;left:10px;z-index:2;font:600 .68rem var(--mono);letter-spacing:.04em;background:var(--surface);color:var(--ink);border-radius:6px;padding:3px 7px;border:1px solid var(--line)}
+@media (max-width:880px){.lib{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.lib{grid-template-columns:1fr}}
+
+/* mini site mockups (drawn in CSS) */
+.mock{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;font-family:var(--body)}
+.mock .nav{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:6% 7% 0;font-size:.62rem;font-weight:600}
+.mock .nav i{font-style:normal;opacity:.7;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mock .hd{padding:0 7%;display:grid;align-content:center;gap:.35rem}
+.mock .hd strong{font-family:var(--display);font-size:clamp(.95rem,2vw,1.35rem);line-height:1.1}
+.mock .hd span{font-size:.62rem;opacity:.8}
+.mock .hd .b{justify-self:start;font-size:.58rem;font-weight:600;padding:.3rem .6rem;border-radius:99px;margin-top:.2rem}
+.mock .ft{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:0 7% 6%}
+.mock .ft div{border-radius:5px;height:26px}
+.m-cafe{background:radial-gradient(120% 90% at 85% 15%,#d79a5a 0,#8a4f26 45%,#2b1a10 100%);color:#fff7ee}
+.m-cafe .b{background:#fff7ee;color:#2b1a10}.m-cafe .ft div{background:rgb(255 247 238 / .16)}
+.m-auto{background:linear-gradient(160deg,#1d2733 0,#0d1217 70%);color:#e9eef3}
+.m-auto .hd strong{color:#ffd23f}.m-auto .b{background:#ffd23f;color:#0d1217}.m-auto .ft div{background:#26313d}
+.m-salon{background:linear-gradient(180deg,#f4ece6,#e7d6cb);color:#3b2a24}
+.m-salon .hd strong{font-family:Georgia,"Noto Sans Armenian","Times New Roman",serif;font-weight:400;font-size:clamp(1.05rem,2.2vw,1.5rem)}
+.m-salon .b{background:#3b2a24;color:#f4ece6}.m-salon .ft div{background:#d9c3b5}
+.m-dent{background:linear-gradient(180deg,#f2f8fb,#dbeef6);color:#0d3c55}
+.m-dent .b{background:#1488c4;color:#fff}.m-dent .ft div{background:#c4e2ef}
+.m-map{background:var(--block)}
+.m-map canvas{position:absolute;inset:0;width:100%;height:100%}
+.m-flowers{background:linear-gradient(140deg,#20321f,#0f1a10);color:#f2ead2}
+.m-flowers .hd strong{color:#f4b6c2}.m-flowers .b{background:#f4b6c2;color:#20321f}.m-flowers .ft div{background:rgb(244 182 194 / .18)}
+
+/* checklist tool */
+.tool{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,32px)}
+.tool>div{min-width:0}
+.checks{display:grid;gap:4px}
+.ck{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;align-items:center;padding:.65rem .7rem;border-radius:10px;cursor:pointer}
+.ck:hover{background:var(--soft)}
+.ck input{width:20px;height:20px;accent-color:var(--brand);margin:0}
+.ck span{font-size:.95rem}
+.ck small{font:500 .72rem var(--mono);color:var(--muted)}
+.score{display:grid;align-content:start;gap:1rem;justify-items:center;text-align:center;padding-top:.5rem}
+.ring{width:180px;height:180px;max-width:100%;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-items:center;font:700 2.4rem var(--display);font-variant-numeric:tabular-nums}
+.ring .v small{display:block;font:500 .75rem var(--mono);color:var(--muted);margin-top:-.4rem}
+.verdict{font-weight:600}
+.tips{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;text-align:left;font-size:.9rem;color:var(--muted);width:100%}
+.tips li{padding-left:1.1rem;position:relative}
+.tips li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--pin)}
+@media (max-width:880px){.tool{grid-template-columns:1fr}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{border-top:2px solid var(--ink);padding-top:1rem;display:grid;gap:.4rem;align-content:start}
+.steps li::before{counter-increment:s;content:"0" counter(s);font:600 .8rem var(--mono);color:var(--brand)}
+.steps b{font-family:var(--display);font-size:1rem}
+.steps p{color:var(--muted);font-size:.93rem}
+@media (max-width:880px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.5rem;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:.9rem}
+.plan.hot{border:2px solid var(--brand)}
+.plan .nm{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.plan .nm h3{font-size:1.05rem}
+.plan .flag{font:600 .68rem var(--mono);background:var(--brand);color:var(--brand-ink);padding:3px 8px;border-radius:99px}
+.price{font:700 1.9rem var(--display);font-variant-numeric:tabular-nums;line-height:1.1}
+.plan p{color:var(--muted);font-size:.93rem}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:.45rem;font-size:.93rem;align-content:start}
+.plan li{padding-left:1.4rem;position:relative}
+.plan li::before{content:"";position:absolute;left:.15rem;top:.4em;width:.45rem;height:.75rem;border:solid var(--brand);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.plan .btn{justify-content:center}
+.pnote{margin-top:1rem;font:500 .8rem var(--mono);color:var(--muted)}
+@media (max-width:880px){.plans{grid-template-columns:1fr}}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem}
+.faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 1.2rem var(--mono);color:var(--brand)}
+.faq details[open] summary::after{content:"−"}
+.faq p{color:var(--muted);margin-top:.7rem;max-width:65ch}
+
+/* contact */
+.contact{background:var(--ink);color:var(--paper);border-radius:26px;padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+.contact>div{min-width:0}
+.contact h2{color:var(--paper)}
+.contact .lede{color:color-mix(in srgb,var(--paper) 70%,transparent);margin-top:.8rem}
+.cards{display:grid;gap:10px}
+.cline{display:flex;align-items:center;justify-content:space-between;gap:.8rem;border:1px solid color-mix(in srgb,var(--paper) 22%,transparent);border-radius:14px;padding:.9rem 1rem}
+.cline>div{min-width:0}
+.cline .k{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.65}
+.cline .val{font:600 1.05rem var(--mono);user-select:all;overflow-wrap:anywhere}
+.cline .val+.val{margin-top:.2rem}
+.cline .btn{background:var(--paper);color:var(--ink);border:0;flex:none}
+.cline button{background:var(--paper);color:var(--ink);border:0;border-radius:99px;padding:.5rem .9rem;font:600 .82rem var(--body);cursor:pointer;flex:none}
+@media (max-width:880px){.contact{grid-template-columns:1fr}}
+footer{padding-block:28px 40px;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+/* modal */
+dialog{border:0;padding:0;border-radius:20px;width:min(960px,calc(100vw - 32px));max-height:calc(100vh - 48px);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgb(8 14 12 / .55);backdrop-filter:blur(3px)}
+.dlg{display:grid;grid-template-columns:1.3fr 1fr}
+.dlg .pv{position:relative;min-height:420px}
+.dlg .tx{padding:1.6rem;display:grid;gap:1rem;align-content:start}
+.dlg .tx h3{font-size:1.3rem}
+.dlg .tx p{color:var(--muted)}
+.dlg .tx ul{margin:0;padding-left:1.1rem;display:grid;gap:.35rem;font-size:.94rem}
+.dlg .close{position:absolute;top:12px;right:12px;z-index:3;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:1.1rem}
+.note{font:500 .75rem var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:.5rem .7rem}
+@media (max-width:760px){.dlg{grid-template-columns:1fr}.dlg .pv{min-height:300px}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="wrap"><span data-i="bar"><b>Принимаю заказы</b> · сайты для местного бизнеса и карточки в Яндекс Картах и Google Картах</span></div></div>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top" aria-label="Сайты и карты">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z" fill="var(--pin)"/><circle cx="12" cy="9" r="2.6" fill="var(--surface)"/></svg>
+    <span data-i="logo">Сайты и карты</span>
+  </a>
+  <nav class="links" aria-label="Разделы">
+    <a href="#works" data-i="n1">Работы</a><a href="#check" data-i="n2">Проверка карточки</a><a href="#prices" data-i="n3">Цены</a><a href="#faq" data-i="n4">Вопросы</a>
+  </nav>
+  <div class="hdr-r">
+    <div class="langs" role="group" aria-label="Язык / Language / Լեզու">
+      <button type="button" data-lang="ru" aria-pressed="true">RU</button><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="hy" aria-pressed="false">ՀԱՅ</button>
+    </div>
+    <a class="btn primary" href="#contact" data-i="write">Написать</a>
+  </div>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow" data-i="heyebrow">Для кафе, сервисов, салонов и магазинов у дома</p>
+      <h1 data-i="h1">Чтобы вас <em>находили</em> на карте и звонили с сайта</h1>
+      <p class="lede" data-i="hlede">Оформляю карточки в Яндекс Картах и Google Картах и делаю быстрые сайты, которые ведут с карты к звонку или записи. Работаю с одной точкой или с сетью.</p>
+      <div class="cta">
+        <a class="btn primary" href="#check" data-i="cta1">Проверить свою карточку</a>
+        <a class="btn" href="#works" data-i="cta2">Смотреть примеры</a>
+      </div>
+      <div class="facts"><span data-i="f1">Яндекс Карты</span><span data-i="f2">Google Карты</span><span data-i="f3">2ГИС по запросу</span><span data-i="f4">Сайт из одной страницы</span></div>
+    </div>
+    <div class="mapbox" id="mapbox">
+      <canvas id="map" aria-hidden="true"></canvas>
+      <div class="searchpill"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2"/></svg><span class="q" data-i="q">кофейня рядом</span><span class="km" id="km"></span></div>
+      <div class="serp">
+        <div class="res win"><div class="ph" aria-hidden="true"></div><div><b><span class="tag">1</span><span data-i="r1n">Кофейня «Зерно»</span></b><small data-i="r1s">Открыто до 22:00 · 24 фото · меню с ценами</small></div><div class="rt">★ 4,9</div></div>
+        <div class="res dim"><div class="ph" data-i="r2ph">нет<br>фото</div><div><b data-i="r2n">Кофе с собой</b><small data-i="r2s">Часы не указаны</small></div><div class="rt">★ 4,1</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc">
+    <article>
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z" fill="currentColor"/></svg></div>
+      <h3 data-i="s1h">Карточка в Яндекс Картах</h3>
+      <p data-i="s1p">Чтобы точка показывалась выше по запросам «рядом» и вызывала доверие.</p>
+      <ul data-i="s1l"><li>Категории, часы, вход на карте</li><li>Фото, услуги и цены</li><li>Ответы на отзывы, публикации</li></ul>
+    </article>
+    <article>
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2" fill="none"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2.2" fill="none"/></svg></div>
+      <h3 data-i="s2h">Профиль в Google Картах</h3>
+      <p data-i="s2p">Для туристов и тех, кто ищет через Google и с телефонов на Android.</p>
+      <ul data-i="s2l"><li>Подтверждение и настройка профиля</li><li>Товары, услуги, атрибуты</li><li>Ответы на вопросы и отзывы</li></ul>
+    </article>
+    <article>
+      <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2.2" fill="none"/><path d="M3 9h18" stroke="currentColor" stroke-width="2.2"/></svg></div>
+      <h3 data-i="s3h">Сайт для бизнеса</h3>
+      <p data-i="s3p">Одна быстрая страница, на которую ведёт кнопка «Сайт» в карточке.</p>
+      <ul data-i="s3l"><li>Услуги и цены, карта проезда</li><li>Кнопки звонка, WhatsApp, Telegram</li><li>Хорошо открывается с телефона</li></ul>
+    </article>
+  </div>
+</div></section>
+
+<section id="works"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow" data-i="weyebrow">Примеры работ</p>
+    <h2 data-i="wh">Демо-сайты под разные бизнесы</h2>
+    <p class="lede" data-i="wlede">Это примеры, а не заказы клиентов: так может выглядеть ваш сайт. Нажмите на любой, чтобы посмотреть, что в нём есть.</p>
+  </div>
+  <div class="filters" role="group">
+    <button class="chip" aria-pressed="true" data-f="all" data-i="c0">Все</button>
+    <button class="chip" aria-pressed="false" data-f="shop" data-i="c1">Еда и магазины</button>
+    <button class="chip" aria-pressed="false" data-f="service" data-i="c2">Услуги</button>
+    <button class="chip" aria-pressed="false" data-f="beauty" data-i="c3">Красота и здоровье</button>
+    <button class="chip" aria-pressed="false" data-f="maps" data-i="c4">Карты</button>
+  </div>
+  <div class="lib" id="lib"></div>
+</div></section>
+
+<section id="check" style="background:var(--soft)"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow" data-i="keyebrow">Проверка за минуту</p>
+    <h2 data-i="kh">Насколько полно заполнена ваша карточка?</h2>
+    <p class="lede" data-i="klede">Откройте свою организацию в Яндекс Картах или Google Картах и отметьте, что там уже есть. Чем полнее карточка, тем чаще карта показывает её людям рядом.</p>
+  </div>
+  <div class="tool">
+    <div class="checks" id="checks"></div>
+    <div class="score" aria-live="polite">
+      <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" stroke="var(--line)" stroke-width="12" fill="none"/><circle id="arc" cx="60" cy="60" r="52" stroke="var(--brand)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg><div class="v"><div><span id="pct">0</span><small data-i="of100">из 100</small></div></div></div>
+      <p class="verdict" id="verdict"></p>
+      <ul class="tips" id="tips"></ul>
+      <a class="btn primary" href="#contact" data-i="help">Помочь заполнить</a>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow" data-i="peyebrow">Как идёт работа</p><h2 data-i="ph">Четыре шага</h2></div>
+  <ol class="steps">
+    <li data-i="st1"><b>Разбор</b><p>Смотрю вашу карточку и трёх ближайших конкурентов, показываю, чего не хватает.</p></li>
+    <li data-i="st2"><b>Карточки</b><p>Заполняю Яндекс Карты и Google Карты: категории, часы, фото, услуги, описание.</p></li>
+    <li data-i="st3"><b>Сайт</b><p>Собираю страницу с ценами и кнопками связи, ставлю ссылку в карточки.</p></li>
+    <li data-i="st4"><b>Передача</b><p>Показываю, как отвечать на отзывы и добавлять публикации самостоятельно.</p></li>
+  </ol>
+</div></section>
+
+<section id="prices"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow" data-i="preyebrow">Цены</p><h2 data-i="prh">Форматы работы</h2></div>
+  <div class="plans">
+    <div class="plan">
+      <div class="nm"><h3 data-i="p1h">Карточки на картах</h3></div>
+      <div class="price" data-i="p1$">от 500 ₽</div>
+      <p data-i="p1p">Яндекс Карты и Google Карты для одной точки.</p>
+      <ul data-i="p1l"><li>Разбор карточки и конкурентов</li><li>Категории, часы, вход, контакты</li><li>Описание, услуги и цены</li><li>Подбор и загрузка фото</li></ul>
+      <a class="btn" href="#contact" data-i="disc">Обсудить</a>
+    </div>
+    <div class="plan hot">
+      <div class="nm"><h3 data-i="p2h">Сайт и карты</h3><span class="flag" data-i="hot">Выгоднее</span></div>
+      <div class="price" data-i="p2$">от 5 500 ₽</div>
+      <p data-i="p2p">Всё из «Карточек» и сайт, на который они ведут.</p>
+      <ul data-i="p2l"><li>Обе карточки под ключ</li><li>Сайт из одной страницы</li><li>Кнопки звонка и мессенджеров</li><li>Инструкция по отзывам</li></ul>
+      <a class="btn primary" href="#contact" data-i="disc">Обсудить</a>
+    </div>
+    <div class="plan">
+      <div class="nm"><h3 data-i="p3h">Сайт-визитка</h3></div>
+      <div class="price" data-i="p3$">от 5 000 ₽</div>
+      <p data-i="p3p">Если карточки уже в порядке и нужен только сайт.</p>
+      <ul data-i="p3l"><li>Одна страница под телефон</li><li>Услуги, цены, карта проезда</li><li>Размещение в интернете</li><li>Правки после запуска</li></ul>
+      <a class="btn" href="#contact" data-i="disc">Обсудить</a>
+    </div>
+  </div>
+  <p class="pnote" data-i="pnote">Итоговая цена зависит от числа точек и объёма сайта. Назову её после разбора.</p>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow" data-i="feyebrow">Вопросы</p><h2 data-i="fh">Что спрашивают чаще всего</h2></div>
+  <div class="faq" id="faqbox"></div>
+</div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <div class="contact">
+    <div>
+      <h2 data-i="ch">Пришлите ссылку на вашу карточку</h2>
+      <p class="lede" data-i="clede">Посмотрю и бесплатно напишу, что в ней стоит поправить в первую очередь.</p>
+    </div>
+    <div class="cards">
+      <div class="cline"><div><div class="k">Telegram</div><div class="val" id="c-tg">@DemPRG</div></div><a class="btn" style="padding:.5rem .9rem;font-size:.82rem" href="https://t.me/DemPRG" target="_blank" rel="noopener" data-i="open">Открыть</a></div>
+      <div class="cline"><div><div class="k" data-i="phru">Телефон · Россия</div><div class="val" id="c-ph1">+7 916 220-25-34</div><div class="val" id="c-ph2">+7 926 738-90-12</div></div></div>
+      <div class="cline"><div><div class="k" data-i="pham">Телефон · Армения</div><div class="val" id="c-ph3">+374 43 22-58-94</div></div><button type="button" data-copy="c-ph3" data-i="copy">Копировать</button></div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span data-i="ft1">Сайты и карты для местного бизнеса</span><span data-i="ft2">Все примеры на странице демонстрационные</span></div></footer>
+
+<dialog id="dlg" aria-labelledby="dlg-t">
+  <button class="close" type="button" aria-label="✕" id="dlg-x">✕</button>
+  <div class="dlg"><div class="pv shot" id="dlg-pv" style="border:0;border-radius:0;aspect-ratio:auto"></div>
+  <div class="tx"><p class="eyebrow" id="dlg-k"></p><h3 id="dlg-t"></h3><p id="dlg-d"></p><ul id="dlg-l"></ul><p class="note" data-i="dnote">Демонстрационный пример. Название и данные выдуманы.</p><a class="btn primary" href="#contact" id="dlg-c" data-i="want">Хочу похожий</a></div></div>
+</dialog>
+
+<script>
+(function(){
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- texts ---------- */
+const T={
+ru:{
+ title:"Сайты и карты для бизнеса",
+ bar:"<b>Принимаю заказы</b> · сайты для местного бизнеса и карточки в Яндекс Картах и Google Картах",
+ logo:"Сайты и карты",n1:"Работы",n2:"Проверка карточки",n3:"Цены",n4:"Вопросы",write:"Написать",
+ heyebrow:"Для кафе, сервисов, салонов и магазинов у дома",
+ h1:"Чтобы вас <em>находили</em> на карте и звонили с сайта",
+ hlede:"Оформляю карточки в Яндекс Картах и Google Картах и делаю быстрые сайты, которые ведут с карты к звонку или записи. Работаю с одной точкой или с сетью.",
+ cta1:"Проверить свою карточку",cta2:"Смотреть примеры",
+ f1:"Яндекс Карты",f2:"Google Карты",f3:"2ГИС по запросу",f4:"Сайт из одной страницы",
+ q:"кофейня рядом",km:k=>"в радиусе "+k+" км",dec:",",
+ r1n:"Кофейня «Зерно»",r1s:"Открыто до 22:00 · 24 фото · меню с ценами",r2ph:"нет<br>фото",r2n:"Кофе с собой",r2s:"Часы не указаны",
+ s1h:"Карточка в Яндекс Картах",s1p:"Чтобы точка показывалась выше по запросам «рядом» и вызывала доверие.",s1l:"<li>Категории, часы, вход на карте</li><li>Фото, услуги и цены</li><li>Ответы на отзывы, публикации</li>",
+ s2h:"Профиль в Google Картах",s2p:"Для туристов и тех, кто ищет через Google и с телефонов на Android.",s2l:"<li>Подтверждение и настройка профиля</li><li>Товары, услуги, атрибуты</li><li>Ответы на вопросы и отзывы</li>",
+ s3h:"Сайт для бизнеса",s3p:"Одна быстрая страница, на которую ведёт кнопка «Сайт» в карточке.",s3l:"<li>Услуги и цены, карта проезда</li><li>Кнопки звонка, WhatsApp, Telegram</li><li>Хорошо открывается с телефона</li>",
+ weyebrow:"Примеры работ",wh:"Демо-сайты под разные бизнесы",wlede:"Это примеры, а не заказы клиентов: так может выглядеть ваш сайт. Нажмите на любой, чтобы посмотреть, что в нём есть.",
+ c0:"Все",c1:"Еда и магазины",c2:"Услуги",c3:"Красота и здоровье",c4:"Карты",badge:"Пример",mnav:"Услуги · Цены · Контакты",
+ keyebrow:"Проверка за минуту",kh:"Насколько полно заполнена ваша карточка?",klede:"Откройте свою организацию в Яндекс Картах или Google Картах и отметьте, что там уже есть. Чем полнее карточка, тем чаще карта показывает её людям рядом.",
+ of100:"из 100",help:"Помочь заполнить",
+ verdicts:["Карточка теряет клиентов","Хорошая база, есть что добрать","Почти идеально","Карточка заполнена полностью"],
+ checks:[
+  ["Карточка подтверждена владельцем","Подтвердите права на карточку: без этого её может изменить кто угодно."],
+  ["Точная категория и 2–3 дополнительных","Добавьте точные категории: по ним карта решает, по каким запросам вас показывать."],
+  ["Часы работы, включая праздники","Укажите часы и праздничный график, иначе карта может писать «закрыто»."],
+  ["Точка входа стоит правильно","Проверьте метку входа: люди приходят по стрелке, а не по адресу."],
+  ["Больше 10 свежих фото: фасад, вход, зал","Загрузите фото фасада, входа и зала: карточки с фото открывают чаще."],
+  ["Услуги или товары с ценами","Добавьте услуги с ценами: их видно прямо в выдаче."],
+  ["Описание, где сказано, что вы делаете","Напишите описание простыми словами: что делаете, для кого, где."],
+  ["Ответ на каждый отзыв","Отвечайте на все отзывы, и на хорошие тоже: это видят будущие клиенты."],
+  ["Публикация или новость за последний месяц","Добавляйте новость раз в месяц: акция, новое блюдо, сезонная услуга."],
+  ["Ссылка на сайт и мессенджер","Поставьте ссылку на сайт и мессенджер, чтобы с карты было куда перейти."]],
+ peyebrow:"Как идёт работа",ph:"Четыре шага",
+ st1:"<b>Разбор</b><p>Смотрю вашу карточку и трёх ближайших конкурентов, показываю, чего не хватает.</p>",
+ st2:"<b>Карточки</b><p>Заполняю Яндекс Карты и Google Карты: категории, часы, фото, услуги, описание.</p>",
+ st3:"<b>Сайт</b><p>Собираю страницу с ценами и кнопками связи, ставлю ссылку в карточки.</p>",
+ st4:"<b>Передача</b><p>Показываю, как отвечать на отзывы и добавлять публикации самостоятельно.</p>",
+ preyebrow:"Цены",prh:"Форматы работы",disc:"Обсудить",hot:"Выгоднее",
+ p1h:"Карточки на картах","p1$":"от 500 ₽",p1p:"Яндекс Карты и Google Карты для одной точки.",p1l:"<li>Разбор карточки и конкурентов</li><li>Категории, часы, вход, контакты</li><li>Описание, услуги и цены</li><li>Подбор и загрузка фото</li>",
+ p2h:"Сайт и карты","p2$":"от 5 500 ₽",p2p:"Всё из «Карточек» и сайт, на который они ведут.",p2l:"<li>Обе карточки под ключ</li><li>Сайт из одной страницы</li><li>Кнопки звонка и мессенджеров</li><li>Инструкция по отзывам</li>",
+ p3h:"Сайт-визитка","p3$":"от 5 000 ₽",p3p:"Если карточки уже в порядке и нужен только сайт.",p3l:"<li>Одна страница под телефон</li><li>Услуги, цены, карта проезда</li><li>Размещение в интернете</li><li>Правки после запуска</li>",
+ pnote:"Итоговая цена зависит от числа точек и объёма сайта. Назову её после разбора.",
+ feyebrow:"Вопросы",fh:"Что спрашивают чаще всего",
+ faq:[
+  ["Можно ли купить первое место на карте?","Позиции в обычной выдаче купить нельзя. Карта ставит выше те организации, которые подходят под запрос, находятся близко и вызывают доверие: заполненная карточка, свежие фото, отзывы с ответами. Над этим я и работаю. Платная реклама на картах — отдельная услуга самих сервисов."],
+  ["Нужен ли вам доступ к моей карточке?","Да. Вы добавляете меня представителем в кабинете организации, а после работы можете убрать доступ. Пароли от вашего аккаунта не нужны."],
+  ["У меня нет карточки. Сделаете с нуля?","Да. Добавлю организацию, помогу пройти подтверждение (звонок, письмо или видео, в зависимости от сервиса) и заполню её."],
+  ["Можно ли удалить плохие отзывы?","Удалить честный отзыв нельзя. Можно пожаловаться на отзыв, который нарушает правила сервиса, и правильно ответить на остальные. Покупать отзывы не предлагаю: сервисы за это понижают или блокируют карточку."],
+  ["Сайт будет моим?","Да. Сайт и его адрес оформляются на вас, исходные файлы передаю после оплаты."]],
+ ch:"Пришлите ссылку на вашу карточку",clede:"Посмотрю и бесплатно напишу, что в ней стоит поправить в первую очередь.",
+ phru:"Телефон · Россия",pham:"Телефон · Армения",open:"Открыть",copy:"Копировать",copied:"Скопировано",selected:"Выделено",
+ ft1:"Сайты и карты для местного бизнеса",ft2:"Все примеры на странице демонстрационные",
+ dnote:"Демонстрационный пример. Название и данные выдуманы.",want:"Хочу похожий",
+ works:{
+  cafe:{k:"Кофейня",t:"«Зерно» у метро",d:"Сайт для кофейни: меню с ценами, часы, как пройти от метро и кнопка «Заказать с собой».",l:["Меню с ценами, которое легко менять","Блок «Как нас найти» с картой","Кнопки звонка и Telegram","Та же структура, что в карточке на карте"],nav:"Зерно",h:"Кофе, который ждёт у метро",s:"с 8:00 до 22:00 · ул. Ленина, 12",b:"Меню"},
+  auto:{k:"Автосервис",t:"«Гараж 24»: ремонт и шины",d:"Страница с прайсом на популярные работы и записью на удобное время.",l:["Прайс на замену масла, колодок, шин","Запись через WhatsApp в одно касание","Режим работы и проезд для машин","Фото боксов и оборудования"],nav:"ГАРАЖ 24",h:"Шиномонтаж без очереди",s:"запись на время · 3 бокса",b:"Записаться"},
+  salon:{k:"Салон красоты",t:"«Лён»: маникюр и брови",d:"Спокойный сайт салона: мастера, цены по услугам и запись через мессенджер.",l:["Карточки мастеров с работами","Цены по категориям услуг","Запись в Telegram или WhatsApp","Ссылка на отзывы в картах"],nav:"Лён",h:"Маникюр и брови в тишине",s:"2 мастера · без спешки",b:"Записаться"},
+  dent:{k:"Стоматология",t:"«Дента Плюс»: семейная клиника",d:"Сайт клиники с врачами, ценами на приём и понятной записью для родителей с детьми.",l:["Врачи и их специализации","Цены на консультацию и лечение","Лицензия и документы","Запись по телефону и в мессенджере"],nav:"Дента Плюс",h:"Лечим зубы всей семьёй",s:"детский врач · без боли",b:"Записаться"},
+  flowers:{k:"Цветы",t:"«Пион»: букеты с доставкой",d:"Витрина букетов с ценами и доставкой по району за два часа.",l:["Каталог букетов с ценами","Доставка и самовывоз","Заказ в WhatsApp с фото букета","Удобно с телефона"],nav:"Пион",h:"Букеты за два часа",s:"доставка по району",b:"Выбрать букет"},
+  card:{k:"Карточка на картах",t:"Карточка: до и после",d:"Что меняется в карточке организации: категории, фото, услуги, ответы на отзывы.",l:["Точные категории вместо одной общей","Часы работы, включая праздники","Фото фасада, входа и зала","Ответ на каждый отзыв"]}}
+},
+en:{
+ title:"Websites & Maps for Business",
+ bar:"<b>Taking orders</b> · websites for local businesses and Yandex Maps & Google Maps listings",
+ logo:"Sites & Maps",n1:"Examples",n2:"Listing check",n3:"Prices",n4:"FAQ",write:"Contact",
+ heyebrow:"For cafés, repair shops, salons and neighborhood stores",
+ h1:"Get <em>found</em> on the map and get calls from your website",
+ hlede:"I set up your Yandex Maps and Google Maps listings and build fast websites that turn a map visit into a call or a booking. One location or a whole chain.",
+ cta1:"Check your listing",cta2:"See examples",
+ f1:"Yandex Maps",f2:"Google Maps",f3:"2GIS on request",f4:"One-page website",
+ q:"coffee near me",km:k=>"within "+k+" km",dec:".",
+ r1n:"Grain Coffee",r1s:"Open until 10 pm · 24 photos · menu with prices",r2ph:"no<br>photo",r2n:"Coffee To Go",r2s:"No hours listed",
+ s1h:"Yandex Maps listing",s1p:"So your place ranks higher for “near me” searches and earns trust.",s1l:"<li>Categories, hours, entrance pin</li><li>Photos, services and prices</li><li>Review replies and posts</li>",
+ s2h:"Google Maps profile",s2p:"For tourists and anyone searching on Google or an Android phone.",s2l:"<li>Verification and profile setup</li><li>Products, services, attributes</li><li>Answers to questions and reviews</li>",
+ s3h:"Business website",s3p:"One fast page that the “Website” button in your listing leads to.",s3l:"<li>Services, prices, directions map</li><li>Call, WhatsApp and Telegram buttons</li><li>Works great on phones</li>",
+ weyebrow:"Examples",wh:"Demo sites for different businesses",wlede:"These are examples, not client projects: this is how your site could look. Tap any of them to see what’s inside.",
+ c0:"All",c1:"Food & shops",c2:"Services",c3:"Beauty & health",c4:"Maps",badge:"Example",mnav:"Services · Prices · Contact",
+ keyebrow:"One-minute check",kh:"How complete is your listing?",klede:"Open your business on Yandex Maps or Google Maps and tick what’s already there. The more complete the listing, the more often the map shows it to people nearby.",
+ of100:"of 100",help:"Help me fill it in",
+ verdicts:["Your listing is losing customers","Good base, room to improve","Almost perfect","Fully complete"],
+ checks:[
+  ["Listing verified by the owner","Verify ownership: without it anyone can edit your listing."],
+  ["Exact main category plus 2–3 extra","Add precise categories: the map uses them to decide which searches show you."],
+  ["Opening hours, including holidays","Add hours and a holiday schedule, or the map may show “closed”."],
+  ["Entrance pin placed correctly","Check the entrance pin: people follow the arrow, not the address."],
+  ["10+ recent photos: front, entrance, interior","Upload photos of the front, entrance and interior: listings with photos get opened more."],
+  ["Services or products with prices","Add services with prices: they show right in the search results."],
+  ["A description that says what you do","Write a plain description: what you do, for whom, where."],
+  ["A reply to every review","Reply to every review, the good ones too: future customers read them."],
+  ["A post or update in the last month","Post an update once a month: a promo, a new dish, a seasonal service."],
+  ["Link to your website and messenger","Add a website and messenger link so people have somewhere to go from the map."]],
+ peyebrow:"How it works",ph:"Four steps",
+ st1:"<b>Review</b><p>I look at your listing and your three nearest competitors and show what’s missing.</p>",
+ st2:"<b>Listings</b><p>I fill in Yandex Maps and Google Maps: categories, hours, photos, services, description.</p>",
+ st3:"<b>Website</b><p>I build a page with prices and contact buttons and link it from your listings.</p>",
+ st4:"<b>Handover</b><p>I show you how to reply to reviews and add posts on your own.</p>",
+ preyebrow:"Prices",prh:"Packages",disc:"Discuss",hot:"Best value",
+ p1h:"Map listings","p1$":"from $6",p1p:"Yandex Maps and Google Maps for one location.",p1l:"<li>Listing and competitor review</li><li>Categories, hours, entrance, contacts</li><li>Description, services and prices</li><li>Photo selection and upload</li>",
+ p2h:"Website + maps","p2$":"from $66",p2p:"Everything in “Map listings” plus the website they link to.",p2l:"<li>Both listings done for you</li><li>One-page website</li><li>Call and messenger buttons</li><li>Guide to handling reviews</li>",
+ p3h:"Business card site","p3$":"from $60",p3p:"If your listings are fine and you only need a website.",p3l:"<li>One page made for phones</li><li>Services, prices, directions map</li><li>Online hosting</li><li>Edits after launch</li>",
+ pnote:"The final price depends on the number of locations and the size of the site. I’ll quote it after the review.",
+ feyebrow:"FAQ",fh:"Common questions",
+ faq:[
+  ["Can I buy the top spot on the map?","You can’t buy a position in the regular results. The map ranks higher the places that match the search, are close by and earn trust: a complete listing, fresh photos, reviews with replies. That’s what I work on. Paid ads on maps are a separate product of the map services themselves."],
+  ["Do you need access to my listing?","Yes. You add me as a manager in your business account and can remove access when the work is done. I don’t need your account passwords."],
+  ["I don’t have a listing. Can you create one?","Yes. I’ll add your business, help you pass verification (a call, a letter or a video, depending on the service) and fill it in."],
+  ["Can bad reviews be removed?","An honest review can’t be removed. You can report a review that breaks the service’s rules and reply properly to the rest. I don’t sell reviews: map services demote or block listings for that."],
+  ["Will the website be mine?","Yes. The site and its address are registered to you, and I hand over the source files after payment."]],
+ ch:"Send me a link to your listing",clede:"I’ll take a look and tell you for free what to fix first.",
+ phru:"Phone · Russia",pham:"Phone · Armenia",open:"Open",copy:"Copy",copied:"Copied",selected:"Selected",
+ ft1:"Websites and map listings for local businesses",ft2:"All examples on this page are demos",
+ dnote:"Demo example. The name and details are made up.",want:"I want one like this",
+ works:{
+  cafe:{k:"Coffee shop",t:"Grain, by the metro",d:"A coffee shop site: menu with prices, hours, directions from the metro and an “Order to go” button.",l:["A menu with prices that’s easy to update","“How to find us” block with a map","Call and Telegram buttons","Same structure as the map listing"],nav:"Grain",h:"Coffee waiting for you by the metro",s:"8 am – 10 pm · 12 Main St.",b:"Menu"},
+  auto:{k:"Car service",t:"Garage 24: repairs and tires",d:"A page with prices for popular jobs and booking at a convenient time.",l:["Prices for oil, brake pads and tire changes","One-tap booking via WhatsApp","Opening hours and car access","Photos of the bays and equipment"],nav:"GARAGE 24",h:"Tire service with no queue",s:"book a time · 3 bays",b:"Book"},
+  salon:{k:"Beauty salon",t:"Linen: nails and brows",d:"A calm salon site: masters, prices by service and booking via messenger.",l:["Master profiles with their work","Prices by service category","Booking in Telegram or WhatsApp","Link to reviews on the maps"],nav:"Linen",h:"Nails and brows in quiet",s:"2 masters · no rush",b:"Book"},
+  dent:{k:"Dental clinic",t:"Denta Plus: family clinic",d:"A clinic site with doctors, consultation prices and easy booking for parents with kids.",l:["Doctors and their specialties","Prices for consultation and treatment","License and documents","Booking by phone or messenger"],nav:"Denta Plus",h:"Dental care for the whole family",s:"pediatric dentist · pain-free",b:"Book"},
+  flowers:{k:"Florist",t:"Peony: bouquets delivered",d:"A bouquet showcase with prices and delivery across the neighborhood within two hours.",l:["Bouquet catalog with prices","Delivery and pickup","Order on WhatsApp with a bouquet photo","Easy to use on a phone"],nav:"Peony",h:"Bouquets in two hours",s:"delivery across the area",b:"Choose a bouquet"},
+  card:{k:"Map listing",t:"Listing: before and after",d:"What changes in a business listing: categories, photos, services, replies to reviews.",l:["Precise categories instead of one generic","Opening hours, including holidays","Photos of the front, entrance and interior","A reply to every review"]}}
+},
+hy:{
+ title:"Կայքեր և քարտեզներ բիզնեսի համար",
+ bar:"<b>Ընդունում եմ պատվերներ</b> · կայքեր տեղական բիզնեսի համար և քարտեր Yandex Maps-ում ու Google Maps-ում",
+ logo:"Կայքեր և քարտեզներ",n1:"Աշխատանքներ",n2:"Քարտի ստուգում",n3:"Գներ",n4:"Հարցեր",write:"Գրել",
+ heyebrow:"Սրճարանների, ավտոսպասարկման, սրահների և թաղային խանութների համար",
+ h1:"Որ ձեզ <em>գտնեն</em> քարտեզում և զանգեն կայքից",
+ hlede:"Կարգավորում եմ ձեր քարտերը Yandex Maps-ում և Google Maps-ում և ստեղծում արագ կայքեր, որոնք քարտեզից տանում են դեպի զանգ կամ գրանցում։ Աշխատում եմ և՛ մեկ կետի, և՛ ցանցի հետ։",
+ cta1:"Ստուգել ձեր քարտը",cta2:"Դիտել օրինակները",
+ f1:"Yandex Maps",f2:"Google Maps",f3:"2GIS ըստ պահանջի",f4:"Մեկ էջանոց կայք",
+ q:"սրճարան մոտակայքում",km:k=>k+" կմ շառավղով",dec:",",
+ r1n:"«Հատիկ» սրճարան",r1s:"Բաց է մինչև 22:00 · 24 լուսանկար · մենյու գներով",r2ph:"նկար<br>չկա",r2n:"Սուրճ տանելու",r2s:"Ժամերը նշված չեն",
+ s1h:"Քարտ Yandex Maps-ում",s1p:"Որպեսզի ձեր կետը ավելի բարձր երևա «մոտակայքում» որոնումներում և վստահություն ներշնչի։",s1l:"<li>Կատեգորիաներ, ժամեր, մուտքի նշիչ</li><li>Լուսանկարներ, ծառայություններ և գներ</li><li>Պատասխաններ կարծիքներին, հրապարակումներ</li>",
+ s2h:"Պրոֆիլ Google Maps-ում",s2p:"Զբոսաշրջիկների և Google-ով ու Android հեռախոսով որոնողների համար։",s2l:"<li>Պրոֆիլի հաստատում և կարգավորում</li><li>Ապրանքներ, ծառայություններ, հատկանիշներ</li><li>Պատասխաններ հարցերին և կարծիքներին</li>",
+ s3h:"Կայք բիզնեսի համար",s3p:"Մեկ արագ էջ, որին տանում է քարտի «Կայք» կոճակը։",s3l:"<li>Ծառայություններ, գներ, ճանապարհի քարտեզ</li><li>Զանգի, WhatsApp-ի, Telegram-ի կոճակներ</li><li>Հարմար է բացվում հեռախոսով</li>",
+ weyebrow:"Աշխատանքների օրինակներ",wh:"Դեմո կայքեր տարբեր բիզնեսների համար",wlede:"Սրանք օրինակներ են, ոչ թե հաճախորդների պատվերներ․ այսպես կարող է լինել ձեր կայքը։ Սեղմեք ցանկացածի վրա՝ տեսնելու, թե ինչ կա ներսում։",
+ c0:"Բոլորը",c1:"Սնունդ և խանութներ",c2:"Ծառայություններ",c3:"Գեղեցկություն և առողջություն",c4:"Քարտեզներ",badge:"Օրինակ",mnav:"Ծառայություններ · Գներ · Կապ",
+ keyebrow:"Ստուգում մեկ րոպեում",kh:"Որքանո՞վ է լրացված ձեր քարտը",klede:"Բացեք ձեր կազմակերպությունը Yandex Maps-ում կամ Google Maps-ում և նշեք, թե ինչ արդեն կա։ Որքան լրիվ է քարտը, այնքան հաճախ է քարտեզը այն ցույց տալիս մոտակայքում գտնվողներին։",
+ of100:"100-ից",help:"Օգնել լրացնել",
+ verdicts:["Քարտը կորցնում է հաճախորդներ","Լավ հիմք է, կա ինչ լրացնել","Գրեթե կատարյալ է","Քարտն ամբողջությամբ լրացված է"],
+ checks:[
+  ["Քարտը հաստատված է սեփականատիրոջ կողմից","Հաստատեք քարտի իրավունքները․ առանց դրա ցանկացած մեկը կարող է փոխել այն։"],
+  ["Ճշգրիտ կատեգորիա և 2–3 լրացուցիչ","Ավելացրեք ճշգրիտ կատեգորիաներ․ դրանցով է քարտեզը որոշում, թե որ որոնումներում ցույց տալ ձեզ։"],
+  ["Աշխատանքային ժամեր, ներառյալ տոները","Նշեք ժամերը և տոնական գրաֆիկը, այլապես քարտեզը կարող է գրել «փակ է»։"],
+  ["Մուտքի նշիչը ճիշտ է դրված","Ստուգեք մուտքի նշիչը․ մարդիկ գալիս են ըստ սլաքի, ոչ թե ըստ հասցեի։"],
+  ["10-ից ավելի թարմ լուսանկար՝ ճակատ, մուտք, սրահ","Վերբեռնեք ճակատի, մուտքի և սրահի լուսանկարներ․ լուսանկարներով քարտերն ավելի հաճախ են բացում։"],
+  ["Ծառայություններ կամ ապրանքներ գներով","Ավելացրեք ծառայություններ գներով․ դրանք երևում են հենց որոնման արդյունքներում։"],
+  ["Նկարագրություն, որտեղ ասված է, թե ինչ եք անում","Գրեք պարզ նկարագրություն՝ ինչ եք անում, ում համար, որտեղ։"],
+  ["Պատասխան յուրաքանչյուր կարծիքի","Պատասխանեք բոլոր կարծիքներին, նաև լավերին․ դրանք կարդում են ապագա հաճախորդները։"],
+  ["Հրապարակում կամ նորություն վերջին ամսում","Ամիսը մեկ նորություն ավելացրեք՝ ակցիա, նոր ուտեստ, սեզոնային ծառայություն։"],
+  ["Հղում կայքին և մեսենջերին","Ավելացրեք հղում կայքին և մեսենջերին, որ քարտեզից գնալու տեղ լինի։"]],
+ peyebrow:"Ինչպես է ընթանում աշխատանքը",ph:"Չորս քայլ",
+ st1:"<b>Վերլուծություն</b><p>Ուսումնասիրում եմ ձեր քարտը և երեք մոտակա մրցակիցներին, ցույց եմ տալիս՝ ինչ է պակասում։</p>",
+ st2:"<b>Քարտեր</b><p>Լրացնում եմ Yandex Maps-ը և Google Maps-ը՝ կատեգորիաներ, ժամեր, լուսանկարներ, ծառայություններ, նկարագրություն։</p>",
+ st3:"<b>Կայք</b><p>Հավաքում եմ էջ՝ գներով և կապի կոճակներով, և հղումը դնում եմ քարտերում։</p>",
+ st4:"<b>Հանձնում</b><p>Ցույց եմ տալիս, թե ինչպես ինքնուրույն պատասխանել կարծիքներին և ավելացնել հրապարակումներ։</p>",
+ preyebrow:"Գներ",prh:"Աշխատանքի ձևաչափեր",disc:"Քննարկել",hot:"Ավելի շահավետ",
+ p1h:"Քարտեր քարտեզներում","p1$":"2 200 ֏-ից",p1p:"Yandex Maps և Google Maps մեկ կետի համար։",p1l:"<li>Քարտի և մրցակիցների վերլուծություն</li><li>Կատեգորիաներ, ժամեր, մուտք, կոնտակտներ</li><li>Նկարագրություն, ծառայություններ և գներ</li><li>Լուսանկարների ընտրություն և վերբեռնում</li>",
+ p2h:"Կայք և քարտեզներ","p2$":"24 500 ֏-ից",p2p:"Ամբողջը «Քարտերից» և կայքը, որին նրանք տանում են։",p2l:"<li>Երկու քարտերն էլ՝ ամբողջությամբ</li><li>Մեկ էջանոց կայք</li><li>Զանգի և մեսենջերների կոճակներ</li><li>Ուղեցույց կարծիքների վերաբերյալ</li>",
+ p3h:"Այցեքարտ կայք","p3$":"22 000 ֏-ից",p3p:"Եթե քարտերն արդեն կարգին են, և պետք է միայն կայք։",p3l:"<li>Մեկ էջ՝ հեռախոսի համար</li><li>Ծառայություններ, գներ, ճանապարհի քարտեզ</li><li>Տեղադրում համացանցում</li><li>Ուղղումներ գործարկումից հետո</li>",
+ pnote:"Վերջնական գինը կախված է կետերի քանակից և կայքի ծավալից։ Կասեմ այն վերլուծությունից հետո։",
+ feyebrow:"Հարցեր",fh:"Ամենահաճախ տրվող հարցերը",
+ faq:[
+  ["Կարելի՞ է գնել առաջին տեղը քարտեզում","Սովորական արդյունքներում դիրքը գնել հնարավոր չէ։ Քարտեզը վեր է դասում այն կազմակերպությունները, որոնք համապատասխանում են որոնմանը, մոտ են և վստահություն են ներշնչում՝ լրացված քարտ, թարմ լուսանկարներ, կարծիքներ՝ պատասխաններով։ Հենց դրա վրա էլ աշխատում եմ։ Վճարովի գովազդը քարտեզներում հենց այդ ծառայությունների առանձին արտադրանքն է։"],
+  ["Ձեզ պե՞տք է մուտք իմ քարտին","Այո։ Դուք ինձ ավելացնում եք որպես ներկայացուցիչ կազմակերպության կաբինետում, իսկ աշխատանքից հետո կարող եք հեռացնել մուտքը։ Ձեր հաշվի գաղտնաբառերը պետք չեն։"],
+  ["Ես քարտ չունեմ։ Կստեղծե՞ք զրոյից","Այո։ Կավելացնեմ կազմակերպությունը, կօգնեմ անցնել հաստատումը (զանգ, նամակ կամ տեսանյութ՝ կախված ծառայությունից) և կլրացնեմ այն։"],
+  ["Կարելի՞ է ջնջել վատ կարծիքները","Ազնիվ կարծիքը ջնջել հնարավոր չէ։ Կարելի է բողոքել ծառայության կանոնները խախտող կարծիքի մասին և ճիշտ պատասխանել մնացածին։ Կարծիքներ գնել չեմ առաջարկում․ դրա համար ծառայությունները իջեցնում կամ արգելափակում են քարտը։"],
+  ["Կայքը իմը կլինի՞","Այո։ Կայքը և դրա հասցեն ձևակերպվում են ձեր անունով, իսկ սկզբնական ֆայլերը փոխանցում եմ վճարումից հետո։"]],
+ ch:"Ուղարկեք ձեր քարտի հղումը",clede:"Կնայեմ և անվճար կգրեմ, թե ինչ է պետք ուղղել առաջին հերթին։",
+ phru:"Հեռախոս · Ռուսաստան",pham:"Հեռախոս · Հայաստան",open:"Բացել",copy:"Պատճենել",copied:"Պատճենված է",selected:"Ընտրված է",
+ ft1:"Կայքեր և քարտեր տեղական բիզնեսի համար",ft2:"Էջի բոլոր օրինակները ցուցադրական են",
+ dnote:"Ցուցադրական օրինակ։ Անվանումը և տվյալները հորինված են։",want:"Ուզում եմ նմանը",
+ works:{
+  cafe:{k:"Սրճարան",t:"«Հատիկ»՝ մետրոյի մոտ",d:"Սրճարանի կայք՝ մենյու գներով, աշխատանքային ժամեր, ինչպես հասնել մետրոյից և «Պատվիրել տանելու» կոճակ։",l:["Մենյու գներով, որը հեշտ է փոխել","«Ինչպես գտնել մեզ» բաժին՝ քարտեզով","Զանգի և Telegram-ի կոճակներ","Նույն կառուցվածքը, ինչ քարտեզի քարտում"],nav:"Հատիկ",h:"Սուրճ, որ սպասում է մետրոյի մոտ",s:"8:00–22:00 · Աբովյան 12",b:"Մենյու"},
+  auto:{k:"Ավտոսպասարկում",t:"«Գարաժ 24»՝ նորոգում և անվադողեր",d:"Էջ՝ հայտնի աշխատանքների գնացուցակով և հարմար ժամի գրանցմամբ։",l:["Յուղի, կոճղակների, անվադողերի փոխարինման գներ","Գրանցում WhatsApp-ով մեկ հպումով","Աշխատանքային ժամեր և մուտք մեքենաների համար","Բոքսերի և սարքավորումների լուսանկարներ"],nav:"ԳԱՐԱԺ 24",h:"Անվադողեր առանց հերթի",s:"գրանցում ժամով · 3 բոքս",b:"Գրանցվել"},
+  salon:{k:"Գեղեցկության սրահ",t:"«Վուշ»՝ մատնահարդարում և հոնքեր",d:"Սրահի հանգիստ կայք՝ վարպետներ, գներ ըստ ծառայությունների և գրանցում մեսենջերով։",l:["Վարպետների քարտեր՝ աշխատանքներով","Գներ ըստ ծառայությունների","Գրանցում Telegram-ով կամ WhatsApp-ով","Հղում քարտեզների կարծիքներին"],nav:"Վուշ",h:"Մատնահարդարում լռության մեջ",s:"2 վարպետ · առանց շտապելու",b:"Գրանցվել"},
+  dent:{k:"Ստոմատոլոգիա",t:"«Դենտա Պլյուս»՝ ընտանեկան կլինիկա",d:"Կլինիկայի կայք՝ բժիշկներով, ընդունելության գներով և հարմար գրանցմամբ երեխաներով ծնողների համար։",l:["Բժիշկներ և նրանց մասնագիտացումները","Խորհրդատվության և բուժման գներ","Լիցենզիա և փաստաթղթեր","Գրանցում հեռախոսով և մեսենջերով"],nav:"Դենտա Պլյուս",h:"Ատամներ ողջ ընտանիքի համար",s:"մանկական բժիշկ · առանց ցավի",b:"Գրանցվել"},
+  flowers:{k:"Ծաղիկներ",t:"«Քաջվարդ»՝ ծաղկեփնջեր առաքմամբ",d:"Ծաղկեփնջերի ցուցափեղկ՝ գներով և թաղամասում երկու ժամում առաքմամբ։",l:["Ծաղկեփնջերի կատալոգ գներով","Առաքում և ինքնավերցում","Պատվեր WhatsApp-ով՝ փնջի լուսանկարով","Հարմար է հեռախոսով"],nav:"Քաջվարդ",h:"Ծաղկեփնջեր երկու ժամում",s:"առաքում թաղամասում",b:"Ընտրել փունջ"},
+  card:{k:"Քարտ քարտեզում",t:"Քարտ՝ առաջ և հետո",d:"Ինչ է փոխվում կազմակերպության քարտում՝ կատեգորիաներ, լուսանկարներ, ծառայություններ, պատասխաններ կարծիքներին։",l:["Ճշգրիտ կատեգորիաներ՝ մեկ ընդհանուրի փոխարեն","Աշխատանքային ժամեր, ներառյալ տոները","Ճակատի, մուտքի և սրահի լուսանկարներ","Պատասխան յուրաքանչյուր կարծիքի"]}}
+}};
+const weights=[12,12,10,8,12,12,8,12,6,8];
+const works=[
+ {id:"cafe",f:"shop",m:"m-cafe"},{id:"auto",f:"service",m:"m-auto"},{id:"salon",f:"beauty",m:"m-salon"},
+ {id:"dent",f:"beauty",m:"m-dent"},{id:"flowers",f:"shop",m:"m-flowers"},{id:"card",f:"maps",m:"m-map",map:true}];
+let L="ru";
+
+/* ---------- library ---------- */
+const lib=document.getElementById("lib");
+function mockHTML(w){
+  if(w.map) return '<div class="mock m-map"><canvas data-mini></canvas></div>';
+  const x=T[L].works[w.id];
+  return `<div class="mock ${w.m}"><div class="nav"><span>${x.nav}</span><i>${T[L].mnav}</i></div><div class="hd"><strong>${x.h}</strong><span>${x.s}</span><span class="b">${x.b}</span></div><div class="ft"><div></div><div></div><div></div></div></div>`;
+}
+function renderLib(){
+  const f=(document.querySelector('.chip[aria-pressed="true"]')||{}).dataset?.f||"all";
+  lib.innerHTML="";
+  works.forEach(w=>{
+    const x=T[L].works[w.id];
+    const b=document.createElement("button");b.className="item";b.type="button";b.dataset.f=w.f;b.hidden=!(f==="all"||w.f===f);
+    b.innerHTML=`<div class="shot"><span class="badge">${T[L].badge}</span>${mockHTML(w)}</div><div class="meta"><h3>${x.t}</h3><span class="by">${x.k}</span></div><p>${x.d}</p>`;
+    b.addEventListener("click",()=>openW(w));lib.appendChild(b);
+  });
+  requestAnimationFrame(()=>document.querySelectorAll("#lib canvas[data-mini]").forEach(drawMini));
+}
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c));
+  const f=c.dataset.f;lib.querySelectorAll(".item").forEach(i=>i.hidden=!(f==="all"||i.dataset.f===f));
+}));
+const dlg=document.getElementById("dlg");
+function openW(w){
+  const x=T[L].works[w.id];
+  document.getElementById("dlg-pv").innerHTML=mockHTML(w);
+  document.getElementById("dlg-k").textContent=x.k;
+  document.getElementById("dlg-t").textContent=x.t;
+  document.getElementById("dlg-d").textContent=x.d;
+  document.getElementById("dlg-l").innerHTML=x.l.map(v=>`<li>${v}</li>`).join("");
+  if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
+  document.querySelectorAll("#dlg-pv canvas[data-mini]").forEach(drawMini);
+}
+document.getElementById("dlg-x").onclick=()=>dlg.close();
+document.getElementById("dlg-c").onclick=()=>dlg.close();
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+
+/* ---------- procedural city map ---------- */
+function rng(seed){return()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646}}
+function drawCity(ctx,W,H,seed,scale){
+  const r=rng(seed);
+  ctx.fillStyle=css("--block");ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=css("--park");
+  for(let i=0;i<3;i++){ctx.beginPath();ctx.ellipse(r()*W,r()*H,(40+r()*70)*scale,(30+r()*50)*scale,r()*3,0,7);ctx.fill()}
+  ctx.strokeStyle=css("--water");ctx.lineWidth=26*scale;ctx.lineCap="round";
+  ctx.beginPath();ctx.moveTo(-20,H*.78);ctx.bezierCurveTo(W*.3,H*.62,W*.55,H*.98,W+20,H*.7);ctx.stroke();
+  ctx.save();ctx.translate(W/2,H/2);ctx.rotate(-.18);ctx.translate(-W/2,-H/2);
+  ctx.strokeStyle=css("--street");
+  const step=46*scale;
+  for(let x=-W*.3;x<W*1.3;x+=step){ctx.lineWidth=(r()<.2?9:4)*scale;ctx.beginPath();ctx.moveTo(x,-H*.3);ctx.lineTo(x+(r()-.5)*20,H*1.3);ctx.stroke()}
+  for(let y=-H*.3;y<H*1.3;y+=step*1.15){ctx.lineWidth=(r()<.2?9:4)*scale;ctx.beginPath();ctx.moveTo(-W*.3,y);ctx.lineTo(W*1.3,y+(r()-.5)*20);ctx.stroke()}
+  ctx.restore();
+}
+function pin(ctx,x,y,s,col,ring){
+  ctx.save();ctx.translate(x,y);
+  if(ring){ctx.fillStyle=col;ctx.globalAlpha=ring;ctx.beginPath();ctx.arc(0,0,s*2.4,0,7);ctx.fill();ctx.globalAlpha=1}
+  ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(-s*.9,-s*1.1,-s,-s*1.6,-s,-s*2);ctx.arc(0,-s*2,s,Math.PI,0);ctx.bezierCurveTo(s,-s*1.6,s*.9,-s*1.1,0,0);ctx.fill();
+  ctx.fillStyle=css("--surface");ctx.beginPath();ctx.arc(0,-s*2,s*.38,0,7);ctx.fill();ctx.restore();
+}
+function drawMini(c){
+  const d=devicePixelRatio||1,W=c.clientWidth,H=c.clientHeight;if(!W)return;
+  c.width=W*d;c.height=H*d;const x=c.getContext("2d");x.scale(d,d);
+  drawCity(x,W,H,7,.7);
+  const r=rng(3);for(let i=0;i<7;i++)pin(x,r()*W,40+r()*(H-60),6,css("--muted"));
+  pin(x,W*.55,H*.5,11,css("--pin"),.18);
+}
+
+const box=document.getElementById("mapbox"),cv=document.getElementById("map"),ctx=cv.getContext("2d"),kmEl=document.getElementById("km");
+let W=0,H=0,bg=null,pins=[],mx=.55,my=.42,tx=.55,ty=.42,t0=performance.now(),lastKm="";
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function layout(){
+  const d=devicePixelRatio||1;W=box.clientWidth;H=box.clientHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);
+  bg=document.createElement("canvas");bg.width=W*d;bg.height=H*d;const b=bg.getContext("2d");b.scale(d,d);drawCity(b,W,H,11,1);
+  const r=rng(5);pins=[];for(let i=0;i<16;i++)pins.push({x:r()*W,y:70+r()*(H*.62)});
+  pins.push({x:W*.58,y:H*.4,win:true});
+  document.querySelectorAll("canvas[data-mini]").forEach(drawMini);
+}
+function frame(now){
+  const t=(now-t0)/1000;
+  mx+=(tx-mx)*.08;my+=(ty-my)*.08;
+  ctx.drawImage(bg,0,0,W,H);
+  const cx=mx*W,cy=my*H,R=Math.min(W,H)*.26;
+  ctx.fillStyle=css("--brand");ctx.globalAlpha=.08;ctx.beginPath();ctx.arc(cx,cy,R,0,7);ctx.fill();
+  ctx.globalAlpha=.5;ctx.setLineDash([5,6]);ctx.strokeStyle=css("--brand");ctx.lineWidth=1.5;ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
+  const mut=css("--muted"),red=css("--pin");
+  pins.forEach(p=>{if(p.win)return;const near=Math.hypot(p.x-cx,p.y-cy)<R;pin(ctx,p.x,p.y-(near?2:0),near?7:5.5,mut)});
+  const w=pins[pins.length-1],pulse=reduce?.15:.12+.1*Math.sin(t*2.4);
+  pin(ctx,w.x,w.y,13,red,pulse);
+  ctx.fillStyle=css("--brand");ctx.beginPath();ctx.arc(cx,cy,6,0,7);ctx.fill();
+  ctx.strokeStyle=css("--surface");ctx.lineWidth=2.5;ctx.stroke();
+  const km=T[L].km((.6+((1-my)*.9)).toFixed(1).replace(".",T[L].dec));
+  if(km!==lastKm){kmEl.textContent=km;lastKm=km}
+  if(!reduce||Math.abs(tx-mx)>.001)requestAnimationFrame(frame);
+}
+box.addEventListener("pointermove",e=>{const b=box.getBoundingClientRect();tx=(e.clientX-b.left)/b.width;ty=Math.min(.72,(e.clientY-b.top)/b.height);if(reduce)requestAnimationFrame(frame)});
+box.addEventListener("pointerleave",()=>{tx=.55;ty=.42;if(reduce)requestAnimationFrame(frame)});
+new ResizeObserver(()=>{layout();if(reduce)requestAnimationFrame(frame)}).observe(box);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",layout);
+new MutationObserver(layout).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+
+/* ---------- checklist ---------- */
+const cbox=document.getElementById("checks");
+weights.forEach((wt,i)=>{const l=document.createElement("label");l.className="ck";l.innerHTML=`<input type="checkbox" id="ck${i}"><span id="ckt${i}"></span><small>+${wt}</small>`;cbox.appendChild(l)});
+[0,2,3].forEach(i=>document.getElementById("ck"+i).checked=true);
+function score(){
+  let s=0,miss=[];T[L].checks.forEach((it,i)=>{if(document.getElementById("ck"+i).checked)s+=weights[i];else miss.push([weights[i],it[1]])});
+  document.getElementById("pct").textContent=s;
+  const arc=document.getElementById("arc");arc.style.strokeDashoffset=326.7*(1-s/100);
+  arc.style.stroke=s<50?css("--pin"):s<80?css("--star"):css("--brand");
+  const v=T[L].verdicts;document.getElementById("verdict").textContent=s<50?v[0]:s<80?v[1]:s<100?v[2]:v[3];
+  document.getElementById("tips").innerHTML=miss.sort((a,b)=>b[0]-a[0]).slice(0,3).map(m=>`<li>${m[1]}</li>`).join("");
+}
+cbox.addEventListener("change",score);
+
+/* ---------- faq ---------- */
+function renderFaq(){
+  const open=[...document.querySelectorAll("#faqbox details")].map(d=>d.open);
+  document.getElementById("faqbox").innerHTML=T[L].faq.map((q,i)=>`<details${open[i]?" open":""}><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join("");
+}
+
+/* ---------- language ---------- */
+function setLang(l){
+  if(!T[l])l="ru";L=l;
+  document.documentElement.lang=l;document.title=T[l].title;
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=T[l][el.dataset.i];if(typeof v==="string")el.innerHTML=v});
+  document.querySelector(".logo").setAttribute("aria-label",T[l].logo);
+  document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  T[l].checks.forEach((c,i)=>document.getElementById("ckt"+i).textContent=c[0]);
+  lastKm="";renderLib();renderFaq();score();
+  try{localStorage.setItem("lang",l)}catch(e){}
+  if(reduce)requestAnimationFrame(frame);
+}
+document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>{setLang(b.dataset.lang);try{history.replaceState(null,"","#"+b.dataset.lang)}catch(e){}}));
+let start=(location.hash||"").slice(1);
+if(!T[start]){try{start=localStorage.getItem("lang")||""}catch(e){start=""}}
+if(!T[start]){const n=(navigator.language||"ru").slice(0,2);start=n==="hy"?"hy":n==="ru"?"ru":"en"}
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(T[h])setLang(h)});
+
+/* ---------- copy ---------- */
+document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{
+  const el=document.getElementById(b.dataset.copy),txt=el.textContent;
+  const reset=()=>setTimeout(()=>b.textContent=T[L].copy,1500);
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent=T[L].selected;reset()};
+  try{navigator.clipboard.writeText(txt).then(()=>{b.textContent=T[L].copied;reset()},sel)}catch(e){sel()}
+}));
+
+layout();setLang(start);requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
