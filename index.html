@@ -107,6 +107,27 @@ nav.links a:hover{color:var(--ink)}
 .svc .ico{width:38px;height:38px;border-radius:10px;background:var(--soft);display:grid;place-items:center;color:var(--brand)}
 @media (max-width:880px){.svc{grid-template-columns:1fr}}
 
+/* stats: public research, each figure with its source */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.3rem;display:grid;gap:.5rem;align-content:start;min-width:0}
+.stat .v{font:700 clamp(2.2rem,4vw,3rem)/1 var(--display);color:var(--brand);font-variant-numeric:tabular-nums}
+.stat p{color:var(--ink);font-size:.98rem;max-width:40ch}
+.src{font:500 .74rem var(--mono);color:var(--muted);text-decoration:none;margin-top:auto;padding-top:.4rem}
+.src:hover{color:var(--ink);text-decoration:underline}
+.stat.cmp{grid-column:span 2;gap:1rem}
+.stat.cmp h3{font-size:1.05rem}
+.bars{display:grid;gap:.9rem}
+.sbar{display:grid;grid-template-columns:1fr auto;gap:.35rem 1rem;align-items:baseline}
+.sbar span{font-size:.95rem}
+.sbar b{font:700 1.6rem var(--display);font-variant-numeric:tabular-nums}
+.sbar .tr{grid-column:1/-1;height:14px;border-radius:99px;background:var(--soft);overflow:hidden}
+.sbar .tr i{display:block;height:100%;border-radius:99px;background:var(--brand)}
+.sbar.lo b{color:var(--muted)}.sbar.lo .tr i{background:var(--muted);opacity:.55}
+.cmp-note{font-weight:600}
+.stats-note{margin-top:1rem;font:500 .8rem var(--mono);color:var(--muted)}
+@media (max-width:880px){.stats{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.stats{grid-template-columns:1fr}.stat.cmp{grid-column:auto}}
+
 /* showcase: phone with a live demo site + map listing before/after */
 .wtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.4rem}
 .wtab{display:flex;align-items:center;gap:.55rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.3rem .9rem .3rem .3rem;font:500 .9rem var(--body);cursor:pointer}
@@ -351,6 +372,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
       <ul data-i="s3l"><li>Услуги и цены, карта проезда</li><li>Кнопки звонка, WhatsApp, Telegram</li><li>Хорошо открывается с телефона</li></ul>
     </article>
   </div>
+</div></section>
+
+<section id="stats" style="padding-bottom:0"><div class="wrap">
+  <div class="sec-head"><p class="eyebrow" id="sx-eye">Цифры</p><h2 id="sx-h">Почему карточка и отзывы приводят клиентов</h2><p class="lede" id="sx-lede"></p></div>
+  <div class="stats" id="statsbox"></div>
+  <p class="stats-note" id="sx-note"></p>
 </div></section>
 
 <section id="works"><div class="wrap">
@@ -805,6 +832,34 @@ function score(){
 }
 cbox.addEventListener("change",score);
 
+/* ---------- stats ---------- */
+const SRC={bl24:"https://www.brightlocal.com/research/local-consumer-review-survey-2024/",bl25:"https://www.brightlocal.com/research/local-consumer-review-survey-2025/",ya:"https://fomag.ru/news-streem/ezhemesyachnaya-auditoriya-geoservisov-yandeksa-prevysila-90-mln-polzovateley/"};
+const SX={
+ru:{eye:"Цифры",h:"Почему карточка и отзывы приводят клиентов",lede:"Данные открытых исследований о том, как люди выбирают компании рядом. Это не мои результаты, а то, как ведут себя покупатели.",
+ cmpT:"Готовы обратиться в компанию, которая…",b1:"отвечает на все отзывы",b2:"не отвечает на отзывы",cmpN:"Почти в 2 раза больше людей выбирают компанию, которая отвечает на отзывы.",
+ s96:"читают отзывы, когда выбирают компанию",s71:"не рассматривают компанию с рейтингом ниже 3 звёзд",v90:"90 млн+",s90:"человек в месяц пользуются Яндекс Картами, Навигатором и Метро",s74:"сверяют отзывы минимум на двух сайтах, поэтому важны и Яндекс, и Google, и 2ГИС",
+ bl24:"BrightLocal, опрос 2024 ↗",bl25:"BrightLocal, опрос 2025 ↗",ya:"Яндекс, октябрь 2024 ↗",note:"Опросы BrightLocal проводились среди покупателей в США. Привычки похожи и у нас: люди смотрят отзывы, фото и часы работы перед тем, как прийти."},
+en:{eye:"The numbers",h:"Why listings and reviews bring customers",lede:"Data from public research on how people choose local businesses. These aren’t my results; this is how customers behave.",
+ cmpT:"Would use a business that…",b1:"replies to all reviews",b2:"doesn’t reply to reviews",cmpN:"Almost twice as many people choose a business that replies to reviews.",
+ s96:"read reviews when choosing a business",s71:"won’t consider a business rated below 3 stars",v90:"90M+",s90:"people a month use Yandex Maps, Navigator and Metro",s74:"check reviews on at least two sites, so Yandex, Google and 2GIS all matter",
+ bl24:"BrightLocal survey, 2024 ↗",bl25:"BrightLocal survey, 2025 ↗",ya:"Yandex, October 2024 ↗",note:"BrightLocal surveyed US consumers. Habits are similar elsewhere: people check reviews, photos and opening hours before they come."},
+hy:{eye:"Թվեր",h:"Ինչու են քարտն ու կարծիքները հաճախորդներ բերում",lede:"Բաց հետազոտությունների տվյալներ այն մասին, թե ինչպես են մարդիկ ընտրում մոտակա կազմակերպությունները։ Սրանք իմ արդյունքները չեն, այլ գնորդների վարքագիծը։",
+ cmpT:"Պատրաստ են դիմել կազմակերպության, որը…",b1:"պատասխանում է բոլոր կարծիքներին",b2:"չի պատասխանում կարծիքներին",cmpN:"Գրեթե երկու անգամ ավելի շատ մարդ է ընտրում այն կազմակերպությունը, որը պատասխանում է կարծիքներին։",
+ s96:"կարդում են կարծիքները՝ կազմակերպություն ընտրելիս",s71:"չեն դիտարկում 3 աստղից ցածր վարկանիշով կազմակերպությունը",v90:"90 մլն+",s90:"մարդ ամսական օգտվում է Yandex Maps-ից, Navigator-ից և Metro-ից",s74:"ստուգում են կարծիքները առնվազն երկու կայքում, ուստի կարևոր են և՛ Yandex-ը, և՛ Google-ը, և՛ 2GIS-ը",
+ bl24:"BrightLocal, հարցում 2024 ↗",bl25:"BrightLocal, հարցում 2025 ↗",ya:"Yandex, հոկտեմբեր 2024 ↗",note:"BrightLocal-ի հարցումներն անցկացվել են ԱՄՆ-ի գնորդների շրջանում։ Սովորությունները նման են նաև մեզ մոտ․ մարդիկ նայում են կարծիքները, լուսանկարներն ու աշխատանքային ժամերը՝ նախքան գալը։"}};
+function renderStats(){
+  const t=SX[L],src=k=>`<a class="src" href="${SRC[k]}" target="_blank" rel="noopener">${esc(t[k])}</a>`;
+  $("sx-eye").textContent=t.eye;$("sx-h").textContent=t.h;$("sx-lede").textContent=t.lede;$("sx-note").textContent=t.note;
+  $("statsbox").innerHTML=`<div class="stat cmp"><h3>${esc(t.cmpT)}</h3><div class="bars">
+   <div class="sbar"><span>${esc(t.b1)}</span><b>88%</b><div class="tr"><i style="width:88%"></i></div></div>
+   <div class="sbar lo"><span>${esc(t.b2)}</span><b>47%</b><div class="tr"><i style="width:47%"></i></div></div></div>
+   <p class="cmp-note">${esc(t.cmpN)}</p>${src("bl24")}</div>
+  <div class="stat"><div class="v">96%</div><p>${esc(t.s96)}</p>${src("bl25")}</div>
+  <div class="stat"><div class="v">71%</div><p>${esc(t.s71)}</p>${src("bl24")}</div>
+  <div class="stat"><div class="v">${esc(t.v90)}</div><p>${esc(t.s90)}</p>${src("ya")}</div>
+  <div class="stat"><div class="v">74%</div><p>${esc(t.s74)}</p>${src("bl25")}</div>`;
+}
+
 /* ---------- extras ---------- */
 // цены: [₽, $, ֏, вид] — вид: "" разово, "mo" в месяц, "per" за язык
 const XP={gis:[500,6,2200,""],rev:[1000,12,4500,"mo"],lead:[1500,19,6500,"mo"],qr:[300,4,1300,""],
@@ -864,7 +919,7 @@ function setLang(l){
   document.querySelector(".logo").setAttribute("aria-label",T[l].logo);
   document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
   T[l].checks.forEach((c,i)=>document.getElementById("ckt"+i).textContent=c[0]);
-  lastKm="";renderLib();renderExtras();renderFaq();score();
+  lastKm="";renderStats();renderLib();renderExtras();renderFaq();score();
   try{localStorage.setItem("lang",l)}catch(e){}
   if(reduce)requestAnimationFrame(frame);
 }
